@@ -10,8 +10,9 @@
  *
  * @author Arthur
  */
-class Operations {
-    //put your code here
+class Operation {
+    
+    //Deal entre deux personnes
     public static function deal($emetteur, $receveur, $montant, $libelle){
         
         global $bdd;
@@ -25,6 +26,7 @@ class Operations {
             ) );
     }
     
+    //Recharge d'un compte ou retrait d'argent
     public static function transfer($emetteur, $montant, $libelle){
         
         global $bdd;
@@ -35,6 +37,14 @@ class Operations {
             'emetteur'=>$emetteur,
             'libelle'=>$libelle,
             ) );
+    }
+    
+    public static function getMyOperations() {
+        
+        global $bdd;
+        
+        $req=$bdd->query('SELECT * FROM operations WHERE user_id = ' . $_SESSION['id']);
+        return $req;
     }
 }
 

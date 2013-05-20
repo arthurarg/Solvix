@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages>
+    <page>
+        <name>home</name>
+        <loc>controleur/staticpages.php</loc>
+    </page>
+    <page>
+        <name>users</name>
+        <loc>  controleur/users.php</loc>
+    </page>
+    <page>
+        <name>operations</name>
+        <loc>controleur/operations.php</loc>
+    </page>
+    <page>
+        <name>relationships</name>
+        <loc>controleur/relationsships.php</loc>
+    </page>
+    <page>
+        <name>sessions</name>
+        <loc>controleur/sessions.php</loc>
+    </page> 
+</pages>

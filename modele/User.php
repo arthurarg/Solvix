@@ -11,14 +11,13 @@
  *
  * @author Arthur
  */
-class Member {
-    private $id;
-    private $nom, $prenom;
-    private $email;
+class User {
+    public $id;
+    public $nom, $prenom;
+    public $email;
     
     public function __construct($id) {
         $this->id=$id;
-        
         $this->getData();
     }
     
@@ -77,7 +76,19 @@ class Member {
     // fonction à déplacer a terme
     public function affichage(){
         echo $this->prenom.' '.$this->nom.' ('.$this->email.')<br/>';
-    } 
+    }
+    
+    public function verifierMotdePasse($email,$password) {
+        
+        global $bdd;
+        $password = sha1($password);
+       
+        $req=$bdd->query("SELECT id FROM users WHERE email= 'jeanmaxime.pasquet@gmail.com'");
+        $donnees = $req->fetch();
+
+        return $donnees['id'];
+        
+    }
 }
 
 ?>
