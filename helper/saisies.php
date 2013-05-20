@@ -13,19 +13,19 @@
 
 
   class Saisies {
+      
       public function isDeal() {
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle']) 
                   && isset($_POST['receveur'])
-                  && is_integer($_POST['montant']) 
-                  && is_integer($_POST['receveur'])
-                  && $_POST['montant'] > 0);
+                  && (int)($_POST['receveur'] > 0)
+                  && (int)$_POST['montant'] > 0);
       }
       
       public function isTransfert() {
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle'])
-                  && is_integer($_POST['montant']));
+                  && (int)($_POST['montant']) != 0);
       }
       
       public function isRelationShip() {

@@ -46,9 +46,9 @@ class User {
         $rep=$bdd->query('SELECT id1, id2 FROM relationships WHERE id1='.$this->id.' OR id2='.$this->id);
         while($d=$rep->fetch()){
             if($d['id1']==$this->id)
-                $friends[$d['id2']]=new Member($d['id2']);
+                $friends[$d['id2']]=new User($d['id2']);
             elseif($d['id2']==$this->id)
-                $friends[$d['id1']]=new Member($d['id1']);
+                $friends[$d['id1']]=new User($d['id1']);
         }
         return $friends;
     }
@@ -73,6 +73,23 @@ class User {
         return $solde;
     }
     
+    public function getOperations() {
+        global $bdd;
+        
+        $req=$bdd->query('SELECT * FROM operations WHERE user_id = ' . $this->id);
+        return $req;
+    }
+    
+    public function getLastOperations() {
+        global $bdd;
+        //jointure pour connaitre le nom éventuel du receveur ??
+        $req=$bdd->query('SELECT * FROM operations WHERE emetteur =' . $this->id . 
+                          ' ORDER BY date DESC LIMIT 0, 5');
+        
+        return $req;
+    }
+    
+    
     // fonction à déplacer a terme
     public function affichage(){
         echo $this->prenom.' '.$this->nom.' ('.$this->email.')<br/>';
@@ -83,7 +100,8 @@ class User {
         global $bdd;
         $password = sha1($password);
        
-        $req=$bdd->query("SELECT id FROM users WHERE email= 'jeanmaxime.pasquet@gmail.com'");
+        $req=$bdd->prepare("SELECT id FROM users WHERE email= ? AND password= ?");
+        $req->execute( array($email, $password));
         $donnees = $req->fetch();
 
         return $donnees['id'];

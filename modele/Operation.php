@@ -16,7 +16,6 @@ class Operation {
     public static function deal($emetteur, $receveur, $montant, $libelle){
         
         global $bdd;
-        
         $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 1, :montant, :emetteur, :receveur, :libelle, NOW()  )');
         $req->execute( array(
             'montant'=>$montant,
@@ -38,14 +37,7 @@ class Operation {
             'libelle'=>$libelle,
             ) );
     }
-    
-    public static function getMyOperations() {
-        
-        global $bdd;
-        
-        $req=$bdd->query('SELECT * FROM operations WHERE user_id = ' . $_SESSION['id']);
-        return $req;
-    }
+
 }
 
 ?>

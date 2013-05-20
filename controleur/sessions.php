@@ -16,7 +16,7 @@ switch ($_GET['action']) {
                 $_SESSION['id'] = $user->id;
                 $_SESSION['nom'] = $user->nom;
                 $_SESSION['prenom'] = $user->prenom;
-                $_SESSION['mail'] = $user->email;
+                $_SESSION['email'] = $user->email;
             }
             else {echo 'bijour';}
         }
