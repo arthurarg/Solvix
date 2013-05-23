@@ -1,5 +1,3 @@
-<?php require_once 'vue/layout/header.php'; ?>
-
 <?php //Cas utilisateur non connecte
 if (!isset($_SESSION['id'])) { ?>
     
@@ -61,5 +59,3 @@ if (!isset($_SESSION['id'])) { ?>
 <?php
   }
 ?>
-
-<?php require_once 'vue/layout/footer.php'; ?>

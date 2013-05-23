@@ -9,12 +9,14 @@ if (!isset($_GET['page']) || $_GET['page'] == 'home') {
         $tabamis=$user->getFriends();
     }
     
-    require_once 'vue/staticpages/home.php';
+    $vue='vue/staticpages/home.php';
+    require_once 'vue/index.php';
     return;
 }
 
 if ($_GET['page'] == 'erreur') {
-    require_once 'vue/staticpages/erreur.php';
+    $vue='vue/staticpages/erreur.php';
+    require_once 'vue/index.php';
     return;
 }
 ?>

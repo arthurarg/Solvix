@@ -22,7 +22,7 @@
                   && (int)$_POST['montant'] > 0);
       }
       
-      public function isTransfert() {
+      public function isTransfert() { // y'a pas de t à transfer en anglais !!!
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle'])
                   && (int)($_POST['montant']) != 0);

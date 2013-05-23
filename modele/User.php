@@ -107,6 +107,32 @@ class User {
         return $donnees['id'];
         
     }
+    
+    public static function rechercher($recherche){
+        
+        global $bdd;
+        
+        $recherche=  htmlspecialchars($recherche);
+        
+        $mots=  preg_split("# #", $recherche);
+        
+        if(count($mots)>=2){
+            $req=$bdd->prepare('SELECT id FROM users WHERE (prenom LIKE \''.$mots[0].'%\' AND nom LIKE \''.$mots[1].'%\') OR (prenom LIKE \''.$mots[1].'%\' AND nom LIKE \''.$mots[0].'%\') ');
+        }
+        else{
+            $req=$bdd->prepare('SELECT id FROM users WHERE prenom LIKE \''.$recherche.'%\' OR nom LIKE \''.$recherche.'%\'');
+        }
+        $req->execute();
+        
+        while($rep=$req->fetch())
+            $res[$rep['id']]=new User($rep['id']);
+        
+        if(!isset($res))
+            return 0;
+        
+        return $res;
+        
+    }
 }
 
 ?>
