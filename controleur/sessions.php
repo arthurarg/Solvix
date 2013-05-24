@@ -14,9 +14,6 @@ switch ($_GET['action']) {
             if ($id != null) {
                 $user = new User($id);
                 $_SESSION['id'] = $user->id;
-                $_SESSION['nom'] = $user->nom;
-                $_SESSION['prenom'] = $user->prenom;
-                $_SESSION['email'] = $user->email;
             }
             else {echo 'bijour';}
         }

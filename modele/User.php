@@ -117,10 +117,12 @@ class User {
         $mots=  preg_split("# #", $recherche);
         
         if(count($mots)>=2){
-            $req=$bdd->prepare('SELECT id FROM users WHERE (prenom LIKE \''.$mots[0].'%\' AND nom LIKE \''.$mots[1].'%\') OR (prenom LIKE \''.$mots[1].'%\' AND nom LIKE \''.$mots[0].'%\') ');
+            $req=$bdd->prepare('SELECT id FROM users WHERE (prenom LIKE ? AND nom LIKE ?) OR (prenom LIKE ? AND nom LIKE ?) ');
+            $req->execute(array($mots[0].'%', $mots[1].'%', $mots[1].'%', $mots[0].'%'));
         }
         else{
-            $req=$bdd->prepare('SELECT id FROM users WHERE prenom LIKE \''.$recherche.'%\' OR nom LIKE \''.$recherche.'%\'');
+            $req=$bdd->prepare('SELECT id FROM users WHERE prenom LIKE ? OR nom LIKE ? ');
+            $req->execute(array($recherche.'%', $recherche.'%'));
         }
         $req->execute();
         

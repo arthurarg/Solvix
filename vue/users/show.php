@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 if(!isset($vue)){
-    echo "Vous n'avez pas accès à la page";
+    header("Location: ../index.php");
     return;
 }
     
@@ -13,8 +13,8 @@ if(!isset($vue)){
 if (isset($_SESSION['id'])) { ?>
 
     <div class ='info_profil'>
-        <p> <?php echo($_SESSION['prenom'] . ' ' . $_SESSION['nom']); ?> </p>
-        <p> <?php echo($_SESSION['email']); ?> </p>
+        <p> <?php echo($current_user->prenom . ' ' . $current_user->nom); ?> </p>
+        <p> <?php echo($current_user->email); ?> </p>
         <p> <?php echo($solde); ?> </p>
     </div>
 
@@ -30,7 +30,7 @@ if (isset($_SESSION['id'])) { ?>
 }
 else{ ?>
 <div>
-    Vous n'êtes pas connecté !
+    Vous n'etes pas connecte !
 </div>
 <?php
 } ?>

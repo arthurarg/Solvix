@@ -1,3 +1,10 @@
+<?php
+if(!isset($vue)){
+    header("Location: ../index.php");
+    return;
+}
+?>
+
 <?php //Cas utilisateur non connecte
 if (!isset($_SESSION['id'])) { ?>
     
@@ -23,8 +30,8 @@ if (!isset($_SESSION['id'])) { ?>
 ?>
 
     <div class ='info_profil'>
-        <p> <?php echo($_SESSION['prenom'] . ' ' . $_SESSION['nom']); ?> </p>
-        <p> <?php echo($_SESSION['email']); ?> </p>
+        <p> <?php echo($current_user->prenom . ' ' . $current_user->nom); ?> </p>
+        <p> <?php echo($current_user->email); ?> </p>
         <p> <?php echo($solde); ?> </p>
     </div>
 
