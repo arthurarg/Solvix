@@ -14,6 +14,13 @@
 
   class Saisies {
       
+      public function isName($string) {
+          return true; // A modifier
+      }
+      public function isMail($string) {
+          return true; // A modifier
+      }
+      
       public function isDeal() {
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle']) 
@@ -30,6 +37,15 @@
       
       public function isRelationShip() {
           return (isset($_GET['id']) && is_int($_GET['id']));
+      }
+      
+      public function isInscriptionValide() {
+          return (isset($_POST['nom']) && Saisies::isName($_POST['nom']) 
+                  && isset($_POST['prenom']) && Saisies::isName($_POST['prenom'])
+                  && isset($_POST['mail']) && Saisies::isMail($_POST['mail'])
+                  && isset($_POST['password'])
+                  && isset($_POST['confirmation'])
+                  && $_POST['password']===$_POST['confirmation']);
       }
   }  
 ?>

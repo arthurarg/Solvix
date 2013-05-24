@@ -1,7 +1,7 @@
 <?php
 
 // RESTful possibles : index, show, new, create, edit, update, destroy, 
-// RESTful utilise : 
+// RESTful utilise : show, create
 
 if (!isset($_GET['action'])) {
     header("Location : index.php");
@@ -21,6 +21,19 @@ switch ($_GET['action']) {
         require_once 'vue/index.php';
         break;
     
+    case "create":
+        if (Saisies::isInscriptionValide() && User::exists($_POST['mail'])==false) {
+            //Sauvegarde dans la bdd
+            User::save($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['password']);
+            //Connection du nouvel utilisateur
+            $id = User::exists($_POST['mail']);
+            if ($id != null)
+                $_SESSION['id'] = $id;
+        }
+        
+            
+        //header('Location: index.php');
+        break;
     default:
         header("Location : index.php");
         break;

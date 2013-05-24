@@ -37,20 +37,24 @@ class User {
         }
     }
     
-    public function getFriends(){
-        
-        $friends=array();
-        
+    public function isFriend($id2) {
         global $bdd;
         
-        $rep=$bdd->query('SELECT id1, id2 FROM relationships WHERE id1='.$this->id.' OR id2='.$this->id);
-        while($d=$rep->fetch()){
-            if($d['id1']==$this->id)
-                $friends[$d['id2']]=new User($d['id2']);
-            elseif($d['id2']==$this->id)
-                $friends[$d['id1']]=new User($d['id1']);
+        $req=$bdd->prepare('SELECT id2 FROM relationships WHERE id1='.$this->id.'AND id2=?');
+        $req->execute(array($id2));
+        
+        return ($req!=null);
+    }
+    public function getFriends(){
+        
+        global $bdd;
+        $tab = array();
+        
+        $rep=$bdd->query('SELECT id2 FROM relationships WHERE id1='.$this->id);
+        while(($ami = $rep->fetch()) != null) {
+            $tab[$ami['id2']]=new User($ami['id2']);
         }
-        return $friends;
+        return $tab;
     }
     
     public function getSolde(){
@@ -76,16 +80,14 @@ class User {
     public function getOperations() {
         global $bdd;
         
-        $req=$bdd->query('SELECT * FROM operations WHERE user_id = ' . $this->id);
+        $req=$bdd->query('SELECT montant,emetteur,receveur,libelle,date FROM operations WHERE user_id = ' . $this->id);
         return $req;
     }
     
     public function getLastOperations() {
         global $bdd;
         //jointure pour connaitre le nom éventuel du receveur ??
-        $req=$bdd->query('SELECT * FROM operations WHERE emetteur =' . $this->id . 
-                          ' ORDER BY date DESC LIMIT 0, 5');
-        
+        $req=$bdd->query('SELECT montant,emetteur,receveur,libelle,date FROM operations WHERE emetteur =' . $this->id . ' ORDER BY date DESC LIMIT 0, 5');
         return $req;
     }
     
@@ -95,7 +97,7 @@ class User {
         echo $this->prenom.' '.$this->nom.' ('.$this->email.')<br/>';
     }
     
-    public function verifierMotdePasse($email,$password) {
+    public static function verifierMotdePasse($email,$password) {
         
         global $bdd;
         $password = sha1($password);
@@ -108,6 +110,27 @@ class User {
         
     }
     
+    public static function exists($mail) {
+        
+        global $bdd;
+        
+        $req=$bdd->prepare("SELECT id FROM users WHERE email=?");
+        $req->execute(array($mail));
+        
+       if (($donnees = $req->fetch()) != null)
+           return $donnees['id'];
+       else
+           return false;
+    }
+    
+    public static function save($prenom,$nom,$mail,$password) {
+        
+        global $bdd;
+        
+        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?, ?, NOW(), NOW())");
+        return ($req->execute(array($mail,sha1($password),$nom,$prenom)));
+    }
+    
     public static function rechercher($recherche){
         
         global $bdd;
@@ -117,12 +140,10 @@ class User {
         $mots=  preg_split("# #", $recherche);
         
         if(count($mots)>=2){
-            $req=$bdd->prepare('SELECT id FROM users WHERE (prenom LIKE ? AND nom LIKE ?) OR (prenom LIKE ? AND nom LIKE ?) ');
-            $req->execute(array($mots[0].'%', $mots[1].'%', $mots[1].'%', $mots[0].'%'));
+            $req=$bdd->prepare('SELECT id FROM users WHERE (prenom LIKE \''.$mots[0].'%\' AND nom LIKE \''.$mots[1].'%\') OR (prenom LIKE \''.$mots[1].'%\' AND nom LIKE \''.$mots[0].'%\') ');
         }
         else{
-            $req=$bdd->prepare('SELECT id FROM users WHERE prenom LIKE ? OR nom LIKE ? ');
-            $req->execute(array($recherche.'%', $recherche.'%'));
+            $req=$bdd->prepare('SELECT id FROM users WHERE prenom LIKE \''.$recherche.'%\' OR nom LIKE \''.$recherche.'%\'');
         }
         $req->execute();
         

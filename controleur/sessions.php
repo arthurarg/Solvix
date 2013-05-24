@@ -11,11 +11,8 @@ switch ($_GET['action']) {
     case 'create':
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $id = User::verifierMotDePasse($_POST['email'],$_POST['password']);
-            if ($id != null) {
-                $user = new User($id);
-                $_SESSION['id'] = $user->id;
-            }
-            else {echo 'bijour';}
+            if ($id != null)
+                $_SESSION['id'] = $id;            
         }
  
         header('Location: index.php');

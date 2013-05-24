@@ -6,6 +6,7 @@
     include_once 'modele/Relationship.php';
     
     include_once 'helper/saisies.php';
+    include_once 'helper/affichage.php';
     
     
 //Connection à la  bdd
