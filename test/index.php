@@ -4,14 +4,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-if(isset($vue)){
-    
-    ?>
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="CSS/structure.css" type="text/css" />
+        <link rel="stylesheet" href="style2.css" type="text/css" />
         </head>
     <body>
         <header>
@@ -28,12 +26,10 @@ if(isset($vue)){
             
         <nav>
             
-            <?php require_once 'vue/layout/nav.php'; ?>
-            
         </nav>
             
         <article>
-            <?php require_once $vue; ?>
+            
         </article>
             
         </div>
@@ -43,12 +39,3 @@ if(isset($vue)){
         </footer>
     </body>
 </html>
-    
-
-    
-    <?php
-}
-else{
-    header("Location: ../index.php");
-}
-?>

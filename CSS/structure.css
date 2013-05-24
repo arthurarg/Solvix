@@ -1,0 +1,63 @@
+/* 
+    Document   : style
+    Created on : 20 mai 2013, 09:33:02
+    Author     : jean-maxime
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+header, footer {
+    width : 100%;
+    
+    background-color: black;
+    color : white;
+    
+    font-style : italic;
+    text-align : right;
+    height: 10%;
+}
+
+footer{
+}
+
+.content{
+    width: 70%;
+    margin-left:15%;
+    min-height: 500px;
+    border:5px solid black;
+}
+
+
+article, nav {
+    display:inline-block;
+    border:1px solid black;
+    min-height:100px;
+    vertical-align:top;
+}
+
+nav{
+    width:25%;
+}
+
+article{
+    width:65%;
+}
+
+/* Gestion du header */
+header a {
+    color : white;
+    text-decoration: none;
+    font-style : italic;
+    width : 150px;
+    font-style : italic;
+}
+header ul {
+    display : inline-block;
+    height : 20px;
+    vertical-align : top;
+}
+header li {
+    display : inline-block;
+    height : 50px;
+    vertical-align : top;
+}
