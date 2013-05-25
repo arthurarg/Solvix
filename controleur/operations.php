@@ -24,9 +24,9 @@ switch ($_GET['action']) {
         
     
     case "index":
-        $operations = Operation::getMyOperation();
+        $operations = $current_user->getOperations();
         $vue='vue/operations/index.php';
-        require_once 'vue/index.php'; // ???????????
+        require_once 'vue/index.php';
         return;
     
     default:

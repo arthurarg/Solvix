@@ -15,10 +15,16 @@ class User {
     public $id;
     public $nom, $prenom;
     public $email;
+    public $estAmi;
     
     public function __construct($id) {
+        global $current_user;        
         $this->id=$id;
         $this->getData();
+        if ($this->id==$_SESSION['id'] || $current_user->isFriend($this->id))
+            $this->estAmi = true;
+        else
+            $this->estAmi = false;
     }
     
     public function getId(){
@@ -56,6 +62,17 @@ class User {
         }
         return $tab;
     }
+    public function getSomeFriends() {
+        
+        global $bdd;
+        $tab=array();
+        //Faire un tableau d'amis et modifier fonction affichage
+        $rep=$bdd->query('SELECT id2 FROM relationships WHERE id1='.$this->id);
+        while(($ami = $rep->fetch()) != null) {
+            $tab[$ami['id2']]=new User($ami['id2']);
+        }
+        return $tab;
+    }
     
     public function getSolde(){
         
@@ -78,17 +95,28 @@ class User {
     }
     
     public function getOperations() {
-        global $bdd;
         
-        $req=$bdd->query('SELECT montant,emetteur,receveur,libelle,date FROM operations WHERE user_id = ' . $this->id);
+        global $bdd;
+        $tab = array();
+        
+        $req=$bdd->query('SELECT id FROM operations WHERE emetteur =' . $this->id .' OR receveur=' . $this->id . ' ORDER BY date DESC LIMIT 0, 5');
+
+        while(($op = $req->fetch()) != null) {
+            $tab[$op['id']]=new Operation($op['id']);
+        }
+        return $tab;
         return $req;
     }
     
     public function getLastOperations() {
+        
         global $bdd;
-        //jointure pour connaitre le nom éventuel du receveur ??
-        $req=$bdd->query('SELECT montant,emetteur,receveur,libelle,date FROM operations WHERE emetteur =' . $this->id . ' ORDER BY date DESC LIMIT 0, 5');
-        return $req;
+        $tab = array();
+        $req=$bdd->query('SELECT id FROM operations WHERE emetteur =' . $this->id . ' OR receveur=' . $this->id .' ORDER BY date DESC LIMIT 0, 5');
+        while(($op = $req->fetch()) != null) {
+            $tab[$op['id']] = new Operation($op['id']);
+        }
+        return $tab;
     }
     
     
