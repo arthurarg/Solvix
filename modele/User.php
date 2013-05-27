@@ -119,6 +119,22 @@ class User {
         return $tab;
     }
     
+    public function update_password($pwd) {
+        global $bdd;
+        
+        $req=$bdd->prepare("UPDATE users SET password=? WHERE id=?");
+        $req->execute(array(sha1($pwd),$_SESSION['id']));
+        return;
+    }
+    
+    public function update_iban($iban) {
+        global $bdd;
+        
+        $req=$bdd->prepare("UPDATE users SET IBAN=? WHERE id=?");
+        $req->execute(array($iban,$_SESSION['id']));
+        return;        
+    }
+    
     
     // fonction à déplacer a terme
     public function affichage(){
@@ -149,6 +165,18 @@ class User {
            return $donnees['id'];
        else
            return false;
+    }
+    
+    public static function isUser($id) {
+        global $bdd;
+        
+        $req=$bdd->prepare("SELECT id FROM users WHERE id=?");
+        $req->execute(array($id));
+        
+        if (($req->fetch()) != null)
+            return true;
+        else
+            return false;
     }
     
     public static function save($prenom,$nom,$mail,$password) {

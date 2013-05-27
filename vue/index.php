@@ -36,6 +36,12 @@ if(isset($vue)){
             </ul>
         </header>
         
+        <?php if (isset($flash) && $flash!=null) {
+            echo("<div class = flash>" . $flash . "</div>");
+            $flash = null;
+        }  ?>  
+       
+        
         <div class="content">
             
             <?php

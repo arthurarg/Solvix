@@ -10,7 +10,7 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
     
     case "create":
-        if (Saisies::isRelationship())
+        if (Saisies::isRelationship() && User::isUser($_GET['id']))
             Relationship::save($_GET['id']);
     
         header('Location : index.php');
