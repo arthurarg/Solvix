@@ -15,12 +15,17 @@ if(isset($vue)){
         </head>
     <body>
         <header>
-            <ul>
+            <ul id="barregauche">
                 <li> <a href='index.php'> Accueil</a> </li>
                 <li> <a href='index.php?page=users&action=show'>Amis</a> </li>
                 <li> <a href='index.php?page=operation&action=new'>Opérations</a> </li>
-                <li> <a href='index.php?page=sessions&action=destroy'>Réglages</a></li>
-                <li> <a href='index.php?page=sessions&action=destroy'>Virement</a></li>
+            </ul>
+            <ul id="barredroite">
+                <form action='recherche.php' method='POST'>
+                    <input id="barre_recherche" type="text" name="recherche" />
+                    <input id="button" type="submit" value="go"/>
+                </form>
+                <li> <a href='index.php?page=sessions&action=destroy'>Rég</a></li>
             </ul>
         </header>
         

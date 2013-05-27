@@ -1,0 +1,21 @@
+/* 
+    Document   : nav
+    Created on : 27 mai 2013, 15:28:54
+    Author     : Arthur
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+nav .nom, nav .solde {
+    font-weight:bold;
+	
+}
+nav .email{
+}
+
+nav .solde{
+}
