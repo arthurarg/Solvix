@@ -3,7 +3,7 @@
 Class Affichage {
     
     // Affiche un tableau d'utilisateurs
-    public function afficher_users($users) {
+    public static function afficher_users($users) {
         if ($users == null)
             return;
         echo("<table>");
@@ -18,7 +18,7 @@ Class Affichage {
     }
     
     // Affiche un tableau d'operations
-    public function afficher_operations($operations) {
+    public static function afficher_operations($operations) {
         if ($operations == null)
             return;
         echo("<table>");
@@ -36,7 +36,7 @@ Class Affichage {
         echo("<table>");
     }
     
-    public function afficher_tableau($var) {
+    public static function afficher_tableau($var) {
         if ($var==null)
             return;
         
