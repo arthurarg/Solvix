@@ -6,6 +6,7 @@
  */
 if(isset($vue)){
     
+    
     ?>
 <!DOCTYPE html>
 <html>
@@ -18,10 +19,10 @@ if(isset($vue)){
             <ul id="barregauche">
                 <li> <a href='index.php'> Accueil</a> </li>
                 <li> <a href='index.php?page=users&action=show'>Amis</a> </li>
-                <li> <a href='index.php?page=operation&action=new'>Opérations</a> </li>
+                <li> <a href='index.php?page=operations&action=index'>Opérations</a> </li>
             </ul>
             <ul id="barredroite">
-                <form action='recherche.php' method='POST'>
+                <form action='index.php?page=users&action=search' method='POST'>
                     <input id="barre_recherche" type="text" name="recherche" />
                     <input id="button" type="submit" value="go"/>
                 </form>
@@ -31,15 +32,29 @@ if(isset($vue)){
         
         <div class="content">
             
+            <?php
+            
+            if(isset($_SESSION['id'])){
+            
+            ?>
         <nav>
             
             <?php require_once 'vue/layout/nav.php'; ?>
             
         </nav>
             
+             <?php
+            }
+            else{
+                $vue='vue/staticpages/home.php';
+            }
+            ?>
+            
         <article>
             <?php require_once $vue; ?>
         </article>
+            
+           
             
         </div>
             
