@@ -25,9 +25,15 @@ if(isset($vue)){
                     <input id="barre_recherche" type="text" name="recherche" />
                     <input id="button" type="submit" value="go"/>
                 </form>
-                <li> <a href='index.php?page=sessions&action=destroy'>Rég</a></li>
+                <li> <a href='index.php?page=users&action=edit'>Rég</a></li>
             </ul>
         </header>
+        
+        <?php if (isset($flash) && $flash!=null) {
+            echo("<div class = flash>" . $flash . "</div>");
+            $flash = null;
+        }  ?>  
+       
         
         <div class="content">
             

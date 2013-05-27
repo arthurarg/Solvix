@@ -29,16 +29,36 @@ switch ($_GET['action']) {
             $id = User::exists($_POST['mail']);
             if ($id != null)
                 $_SESSION['id'] = $id;
-        }
-        
-            
-        //header('Location: index.php');
+        }            
+        header('Location: index.php');
         break;
+        
     case "index":
         $amis=$current_user->getFriends();
         $vue='vue/users/index.php';
         require_once 'vue/index.php';
         break;
+    
+    case "edit":
+        $vue='vue/users/edit.php';
+        require_once 'vue/index.php';
+        break;
+    
+    case "update":
+        if (Saisies::isValidUpdate() && User::verifierMotdePasse($current_user->email, $_POST['password'])) {
+            if (isset($_POST['new_password'])) 
+                User::update_password($_POST['new_password']);
+            if (isset($_POST['iban']))
+                User::update_iban($_POST['iban']);
+            $flash = "Mise à jour reussie";
+        }
+        else
+            $flash = "Mise à jour : echec ";
+        
+        $vue = "index.php";
+        require_once 'vue/index.php';
+        break;       
+    
     default:
         header("Location : index.php");
         break;

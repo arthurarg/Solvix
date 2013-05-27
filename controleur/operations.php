@@ -10,13 +10,14 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
     
     case "create":
-        //Pour l'instant, on ne verifie pas si le receveur existe et si c'est un ami
-        // On ne verifie pas non plus si le solde est négatif ou pas
+        // On verifie si le receveur existe et si c'est un ami
+        // On verifie si le solde est négatif ou pas
         // Cas d'un deal
-        if (saisies::isDeal())
+        if (saisies::isDeal() && current_user::getSolde() > (int)$_POST['montant'] && $current_user::isFriend($_POST['receveur']))
             Operation::deal($_SESSION['id'],$_POST['receveur'],(int)$_POST['montant'], $_POST['libelle']);
+        //On verifie que le montant (dans le cas d'un retrait) est inférieur au solde
         // Cas d'un transfert
-        if (Saisies::isTransfert())
+        if (Saisies::isTransfert() && current_user::getSolde() > - (int)$_POST['montant'])
             Operation::isTransfert($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
         
         header('Location: index.php');

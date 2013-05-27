@@ -12,7 +12,6 @@
 //Connection à la  bdd
     $bdd=new PDO('mysql:host=localhost;dbname=modal', 'root','');
     
-    
     //Charge l'utilisateur
     if(isset($_SESSION['id'])){
         $current_user=new User($_SESSION['id']);

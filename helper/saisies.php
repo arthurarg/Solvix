@@ -20,6 +20,9 @@
       public function isMail($string) {
           return true; // A modifier
       }
+      public function isIban($string) {
+          return true;
+      }
       
       public function isDeal() {
           return (isset($_POST['montant']) 
@@ -46,6 +49,20 @@
                   && isset($_POST['password'])
                   && isset($_POST['confirmation'])
                   && $_POST['password']===$_POST['confirmation']);
+      }
+      
+      public function isValidUpdate() {
+          if (!isset($_POST['password']))
+              return false;
+          if (isset($_POST['new_password'])) {
+              if (!isset($_POST['new_confirmation']) || !($POST['new_confirmation']===$POST['new_password']))
+                  return false;
+          }
+          if (isset($_POST['iban']) && !Saisies::isIBAN($_POST['iban']))
+              return false;
+          
+          return true;
+              
       }
   }  
 ?>

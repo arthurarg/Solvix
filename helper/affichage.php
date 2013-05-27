@@ -10,9 +10,10 @@ Class Affichage {
         foreach ($users as $user) {
             echo("<tr>
                 <td>". $user->prenom . "</td>
-                <td>". $user->nom . "</td>
-                <td>". $user->estAmi . "</td>
-                </tr>");
+                <td>". $user->nom . "</td>");
+            if (!$user->estAmi)
+                echo("<td><a href='index.php?page=relationships&action=create&id='" . $user->id .">Ajouter</a></td>");
+            echo ("</tr>");
         }
         echo("<table>");
     }
