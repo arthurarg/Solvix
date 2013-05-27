@@ -39,6 +39,27 @@ switch ($_GET['action']) {
         require_once 'vue/index.php';
         break;
     
+    case "edit":
+        $vue='vue/users/edit.php';
+        require_once 'vue/index.php';
+        break;
+    
+    case "update":
+        if (Saisies::isValidUpdate() && User::verifierMotdePasse($current_user->email, $_POST['password'])) {
+            if (isset($_POST['new_password'])) 
+                User::update_password($_POST['new_password']);
+            if (isset($_POST['iban']))
+                User::update_iban($_POST['iban']);
+            $flash = "Mise à jour reussie";
+        }
+        else
+            $flash = "Mise à jour : echec ";
+        
+        $vue = "index.php";
+        require_once 'vue/index.php';
+        break;       
+    
+
     case "search":
         if( isset($_POST['recherche'])){
     
@@ -48,6 +69,7 @@ switch ($_GET['action']) {
             require_once 'vue/index.php';
         }
         break;
+        
     default:
         header("Location : index.php");
         break;
