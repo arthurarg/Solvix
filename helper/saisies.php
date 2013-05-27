@@ -14,14 +14,14 @@
 
   class Saisies {
       
-      public function isName($string) {
+      public static function isName($string) {
           return true; // A modifier
       }
-      public function isMail($string) {
+      public static function isMail($string) {
           return true; // A modifier
       }
       
-      public function isDeal() {
+      public static function isDeal() {
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle']) 
                   && isset($_POST['receveur'])
@@ -29,17 +29,17 @@
                   && (int)$_POST['montant'] > 0);
       }
       
-      public function isTransfert() { // y'a pas de t à transfer en anglais !!!
+      public static function isTransfert() { // y'a pas de t à transfer en anglais !!!
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle'])
                   && (int)($_POST['montant']) != 0);
       }
       
-      public function isRelationShip() {
+      public static function isRelationShip() {
           return (isset($_GET['id']) && is_int($_GET['id']));
       }
       
-      public function isInscriptionValide() {
+      public static function isInscriptionValide() {
           return (isset($_POST['nom']) && Saisies::isName($_POST['nom']) 
                   && isset($_POST['prenom']) && Saisies::isName($_POST['prenom'])
                   && isset($_POST['mail']) && Saisies::isMail($_POST['mail'])

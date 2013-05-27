@@ -1,0 +1,18 @@
+/* 
+    Document   : content
+    Created on : 27 mai 2013, 17:28:44
+    Author     : Arthur
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+article a{
+    color:#0084B4;
+    text-decoration: none;
+}
+article a:hover{
+    text-decoration: underline;
+}

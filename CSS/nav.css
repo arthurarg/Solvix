@@ -12,9 +12,13 @@ root {
 
 nav .nom, nav .solde {
     font-weight:bold;
-	
+}
+nav .nom{
+    color:#0084B4;
 }
 nav .email{
+    font-family:monospace;
+    font-size:12px;
 }
 
 nav .solde{

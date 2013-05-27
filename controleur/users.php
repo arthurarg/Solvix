@@ -32,7 +32,7 @@ switch ($_GET['action']) {
         }
         
             
-        //header('Location: index.php');
+        header('Location: index.php');
         break;
     case "index":
         $amis=$current_user->getFriends();

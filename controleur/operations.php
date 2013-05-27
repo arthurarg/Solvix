@@ -19,6 +19,8 @@ switch ($_GET['action']) {
         if (Saisies::isTransfert())
             Operation::isTransfert($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
         
+        
+        
         header('Location: index.php');
         return;
         

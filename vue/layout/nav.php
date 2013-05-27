@@ -13,7 +13,7 @@ if(isset($vue)){
 
     <p class="nom"><?php echo $current_user->prenom.' '.$current_user->nom ?></p>
     <p class="email"><?php echo $current_user->email ?></p>
-    <p class="solde"><?php echo $current_user->getSolde() ?></p>
+    <p class="solde"><?php echo 'Solde : '.$current_user->getSolde().' €' ?></p>
             
     
 <?php

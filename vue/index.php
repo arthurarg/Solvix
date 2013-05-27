@@ -13,6 +13,8 @@ if(isset($vue)){
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="CSS/structure.css" type="text/css" />
+        <link rel="stylesheet" href="CSS/nav.css" type="text/css" />
+        <link rel="stylesheet" href="CSS/content.css" type="text/css" />
         </head>
     <body>
         <header>
@@ -22,11 +24,15 @@ if(isset($vue)){
                 <li> <a href='index.php?page=operations&action=index'>Opérations</a> </li>
             </ul>
             <ul id="barredroite">
-                <form action='index.php?page=users&action=search' method='POST'>
-                    <input id="barre_recherche" type="text" name="recherche" />
-                    <input id="button" type="submit" value="go"/>
-                </form>
-                <li> <a href='index.php?page=sessions&action=destroy'>Rég</a></li>
+                <li>
+                    <form action='index.php?page=users&action=search' method='POST'>
+                        <input id="barre_recherche" type="text" name="recherche" />
+                        <input id="button" type="submit" value="go"/>
+                    </form>
+                </li>
+                <li>
+                    <a href='index.php?page=sessions&action=destroy'> <img src="images/settings.png" alt="Réglages"/> </a>
+                </li>
             </ul>
         </header>
         
