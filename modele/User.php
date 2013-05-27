@@ -193,6 +193,9 @@ class User {
         
         $recherche=  htmlspecialchars($recherche);
         
+        if(strlen($recherche)==0)
+            return 0;
+        
         $mots=  preg_split("# #", $recherche);
         
         if(count($mots)>=2){

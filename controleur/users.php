@@ -59,6 +59,17 @@ switch ($_GET['action']) {
         require_once 'vue/index.php';
         break;       
     
+
+    case "search":
+        if( isset($_POST['recherche'])){
+    
+            $resultats=  User::rechercher($_POST['recherche']);
+
+            $vue='vue/users/resultat_recherche.php';
+            require_once 'vue/index.php';
+        }
+        break;
+        
     default:
         header("Location : index.php");
         break;
