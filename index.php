@@ -35,20 +35,22 @@
         
     
     
-/* Cas utilisateur non connecté => seul home, la page de connection le formulaire d'inscription sont accessibles
+//Cas utilisateur non connecté => seul home, la page de connection le formulaire d'inscription sont accessibles
     if (!isset($_SESSION['id'])) {
-        if (!isset($page_demandee) || $page_demandee == "home")
-            require_once 'controleur/staticpages.php';
         if ($page_demandee == 'users' && isset($_GET['action']) && $_GET['action'] == "create")
             require_once 'controleur/users.php' ;
-        if ($page_demandee == 'session' && isset($_GET['action']) && $_GET['action'] == "create")
+        else if ($page_demandee == 'session' && isset($_GET['action']) && $_GET['action'] == "create")
             require_once 'controleur/sessions.php' ;
+        else
+            header('Location: index.php');
+        
+            
          
          return;
-    }*/
+    }
     
 //Cas utilisateur connecte
-    //else {
+    else {
 
 
          $xml = simplexml_load_file("pages.xml");
@@ -63,7 +65,7 @@
 
          //Si la page demandee n'existe pas, go erreur
          require_once 'vue/staticpages/erreur.php';
-    //}
+    }
 
 /*
  * To change this template, choose Tools | Templates
