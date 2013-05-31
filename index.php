@@ -39,7 +39,7 @@
     if (!isset($_SESSION['id'])) {
         if ($page_demandee == 'users' && isset($_GET['action']) && $_GET['action'] == "create")
             require_once 'controleur/users.php' ;
-        else if ($page_demandee == 'session' && isset($_GET['action']) && $_GET['action'] == "create")
+        else if ($page_demandee == 'sessions' && isset($_GET['action']) && $_GET['action'] == "create")
             require_once 'controleur/sessions.php' ;
         else
             header('Location: index.php');

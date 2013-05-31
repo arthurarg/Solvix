@@ -46,7 +46,7 @@ switch ($_GET['action']) {
                     
                     if (Saisies::isTransfert() && $current_user->getSolde() > - $_POST['montant']){
                         Operation::transfer($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
-                        $flash="Transfert réussit";
+                        $flash="Transfert réussi";
                     }
                     else
                         $flash="Transfert impossible";
