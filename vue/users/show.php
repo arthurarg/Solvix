@@ -11,26 +11,21 @@ if(!isset($vue)){
     
 
 if (isset($_SESSION['id'])) { ?>
-
-    <div class ='info_profil'>
-        <p> <?php echo($current_user->prenom . ' ' . $current_user->nom); ?> </p>
-        <p> <?php echo($current_user->email); ?> </p>
-        <p> <?php echo($solde); ?> </p>
+    
+    <p class="nom"><?php echo $user->prenom.' '.$user->nom ?></p>
+    <p class="email"><?php echo $user->email ?></p>
+    
+    <div class="dernieres_operations">
+        <p> Dernieres operations en commun </p>
+        <?php Affichage::afficher_operations($taboperations);?>
     </div>
+    <a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a>
 
-    <div class ='dernieres_operations'>
-        <?php 
-
-        while($op = $taboperations->fetch()) {
-            echo ('<p>' . $op['libelle'] . ' '. $op['montant'] . '</p>' );
-        } 
-        ?>
+    <div class="quelques_amis">
+        <p> Amis de cette personne </p>
+        <?php Affichage::afficher_users($tabamis);?>
     </div>
-<?php
+    <a href='index.php?page=users&action=index'> Voir tous mes amis </a>
+    <?php
 }
-else{ ?>
-<div>
-    Vous n'etes pas connecte !
-</div>
-<?php
-} ?>
+?>

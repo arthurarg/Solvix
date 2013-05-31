@@ -29,19 +29,15 @@ if (!isset($_SESSION['id'])) { ?>
     else { // cas utilisateur connecte
 ?>
 
-    <div class ='info_profil'>
-        <p> <?php echo($current_user->prenom . ' ' . $current_user->nom); ?> </p>
-        <p> <?php echo($current_user->email); ?> </p>
-        <p> <?php echo($solde); ?> </p>
-    </div>
-
     <div class="dernieres_operations">
+        <p> Mes dernières opérations </p>
         <?php Affichage::afficher_operations($taboperations);?>
     </div>
     <a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a>
 
     <div class="quelques_amis">
-        <?php Affichage::afficher_users($tabbisamis);?>
+        <p> Mes amis </p>
+        <?php Affichage::afficher_users($tabamis);?>
     </div>
     <a href='index.php?page=users&action=index'> Voir tous mes amis </a>
 
