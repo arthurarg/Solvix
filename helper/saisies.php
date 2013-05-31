@@ -23,6 +23,9 @@
       public function isIban($string) {
           return true;
       }
+      public function isIban($string) {
+          return true;
+      }
       
       public static function isDeal() {
           return (isset($_POST['montant']) 
