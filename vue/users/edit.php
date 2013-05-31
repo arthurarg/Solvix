@@ -4,4 +4,5 @@
         <p>Confirmation nouveau mot de passe : <input type="password" name="new_confirmation" /></p>
         <p>IBAN : <input type="text" name="iban" /></p>
         <p><input type="submit" value="Mettre à jour"></p>
+        <p><a href="index.php?page=sessions&action=destroy">Déconnection</a></p>
 </form>

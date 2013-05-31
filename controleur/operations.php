@@ -44,8 +44,8 @@ switch ($_GET['action']) {
                     break;
                 case "transfer":
                     
-                    if (Saisies::isTransfert() && current_user::getSolde() > - $_POST['montant']){
-                        Operation::isTransfert($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
+                    if (Saisies::isTransfert() && $current_user->getSolde() > - $_POST['montant']){
+                        Operation::transfer($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
                         $flash="Transfert réussit";
                     }
                     else
@@ -57,8 +57,8 @@ switch ($_GET['action']) {
             }
             
         }
-        $vue='vue/staticpages/home.php';
-        require_once 'vue/index.php';
+        $redirection=true;
+        require_once 'controleur/staticpages.php';
         return;
         
     

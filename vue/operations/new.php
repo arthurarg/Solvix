@@ -33,7 +33,18 @@ switch($_GET['type']){
         <?php
         break;
     case "transfer":
-        echo 'Non implémenté pour le moment';
+        ?>
+
+<form action='index.php?page=operations&action=create&type=transfer' method='POST'>
+    <ul>
+        <li>Libellé : <input type="text" name="libelle"</li>
+        <li>Montant : <input type="number" name="montant"</li>
+        <li><input type="submit" value="Valider"</li>
+    </ul>
+    
+</form>
+
+        <?php
         break;
     default:
         header("Location: ../index.php");
