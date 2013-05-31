@@ -29,7 +29,7 @@ switch ($_GET['action']) {
             $id = User::exists($_POST['mail']);
             if ($id != null)
                 $_SESSION['id'] = $id;
-        }            
+        } 
         header('Location: index.php');
         break;
         

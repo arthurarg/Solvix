@@ -39,16 +39,15 @@ body {
     color:rgb(47,47, 47);
 }
 
-.content{
-    width: 70%;
-    margin-left:15%;
+.content {
+    background-color: rgba(255, 255, 255, 0.4);
     height: 88%;
-    position:absolute;
-    top:6%;
-    
-    padding:10px;
-    background-color:rgba(255, 255, 255, 0.4);
-    z-index:1;
+    margin-left: 15%;
+    padding: 10px;
+    position: absolute;
+    top: 6%;
+    width: 70%;
+    z-index: 1;
 }
 
 
@@ -124,4 +123,15 @@ header li {
     margin-left:7%;
     margin-right:7%;
     vertical-align:middle;
+}
+
+
+/*Flash*/
+.flash {
+    background-color:green;
+    margin-left:40%;
+    position:relative;
+    top:40px;
+    width:20%;
+    z-index:10;
 }

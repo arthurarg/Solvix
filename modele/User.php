@@ -187,7 +187,7 @@ class User {
         
         global $bdd;
         
-        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?, ?, NOW(), NOW())");
+        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW())");
         return ($req->execute(array($mail,sha1($password),$nom,$prenom)));
     }
     
