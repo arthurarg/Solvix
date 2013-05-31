@@ -15,7 +15,7 @@
     </page>
     <page>
         <name>relationships</name>
-        <loc>controleur/relationsships.php</loc>
+        <loc>controleur/relationships.php</loc>
     </page>
     <page>
         <name>sessions</name>

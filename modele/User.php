@@ -46,11 +46,15 @@ class User {
     public function isFriend($id2) {
         global $bdd;
         
-        $req=$bdd->prepare('SELECT id2 FROM relationships WHERE id1='.$this->id.'AND id2=?');
+        $req=$bdd->prepare('SELECT id2 FROM relationships WHERE id1='.$this->id.' AND id2=?');
         $req->execute(array($id2));
         
-        return ($req!=null);
+        if($req->fetch()==null)
+            return false;
+        else
+            return true;
     }
+    
     public function getFriends(){
         
         global $bdd;

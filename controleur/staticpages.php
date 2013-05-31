@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_GET['page']) || $_GET['page'] == 'home') {
+if (!isset($_GET['page']) || $_GET['page'] == 'home' || isset($redirection)) {
     
     if (isset($_SESSION['id'])) {
         $solde = $current_user->getSolde();
