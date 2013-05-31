@@ -20,7 +20,7 @@ if(isset($vue)){
         <header>
             <ul id="barregauche">
                 <li> <a href='index.php'> Accueil</a> </li>
-                <li> <a href='index.php?page=users&action=show'>Amis</a> </li>
+                <li> <a href='index.php?page=users&action=index'>Amis</a> </li>
                 <li> <a href='index.php?page=operations&action=index'>Opérations</a> </li>
             </ul>
             <ul id="barredroite">
@@ -31,7 +31,7 @@ if(isset($vue)){
                     </form>
                 </li>
                 <li>
-                    <a href='index.php?page=sessions&action=destroy'> <img src="images/settings.png" alt="Réglages"/> </a>
+                    <a href='index.php?page=users&action=edit'> <img src="images/settings.png" alt="Réglages"/> </a>
                 </li>
             </ul>
         </header>
