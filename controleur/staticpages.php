@@ -5,8 +5,7 @@ if (!isset($_GET['page']) || $_GET['page'] == 'home' || isset($redirection)) {
     if (isset($_SESSION['id'])) {
         $solde = $current_user->getSolde();
         $taboperations = $current_user->getLastOperations();
-        $tabamis=$current_user->getFriends();
-        $tabbisamis=$current_user->getSomeFriends();
+        $tabamis=$current_user->getSomeFriends();
         
     }
     $vue='vue/staticpages/home.php';

@@ -4,19 +4,19 @@
 // RESTful utilise : show, create
 
 if (!isset($_GET['action'])) {
-    header("Location : index.php");
+    header("Location: index.php");
 }
 
 switch ($_GET['action']) {
     
     case "show":
-        if (isset($_SESSION['id'])) {
-            $user = new User($_SESSION['id']);
-            $solde = $user->getSolde();
-            $taboperations = $user->getLastOperations();
-            $tabamis=$user->getFriends();
-        }
-        $show=true;
+        if (!isset($_GET['id']) || $_GET['id']==$current_user->id || ! User::isUser($_GET['id']))
+                header('Location: index.php');
+        
+        $user = new User($_GET['id']);
+        $taboperations = $user->getCommonOperations($current_user);
+        $tabamis=$user->getSomeFriends();
+        
         $vue='vue/users/show.php';
         require_once 'vue/index.php';
         break;
@@ -32,7 +32,7 @@ switch ($_GET['action']) {
         } 
         header('Location: index.php');
         break;
-        
+    
     case "index":
         $amis=$current_user->getFriends();
         $vue='vue/users/index.php';

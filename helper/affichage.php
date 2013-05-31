@@ -11,8 +11,8 @@ Class Affichage {
         echo("<table>");
         foreach ($users as $user) {
             echo("<tr>
-                <td>". $user->prenom . "</td>
-                <td>". $user->nom . "</td>");
+                <td><a href='index.php?page=users&action=show&id=$user->id'>". $user->prenom 
+                    . " " . $user->nom . "</a></td>");
             if (!$user->estAmi)
                 echo("<td><a href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a></td>");
             else
@@ -24,7 +24,7 @@ Class Affichage {
     
     public static function afficher_name($id) {
         $user=new User($id);
-        echo '<span class="name">'.$user->prenom.' '.$user->nom.'</span>';
+        echo "<span class='name'><a href='index.php?page=users&action=show&id=$user->id'>".$user->prenom." ".$user->nom."</a></span>";
     }
     
     // Affiche un tableau d'operations
@@ -33,9 +33,9 @@ Class Affichage {
             return;
         echo("<table>");
         foreach ($operations as $op) {
-            echo("<td>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</td>");
+            echo("<td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
             if ($op->receveur != null)
-                echo("<td>". $op->receveur->prenom . " " . $op->receveur->nom . "</td>");
+                echo("<td><a href='index.php?page=users&action=show&id=".$op->receveur->id ."'>". $op->receveur->prenom . " " . $op->receveur->nom . "</a></td>");
             else
                 echo("<td> Aucun </td>");
             

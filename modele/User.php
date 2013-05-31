@@ -123,6 +123,17 @@ class User {
         return $tab;
     }
     
+    public function getCommonOperations($user) {
+        
+        global $bdd;
+        $tab = array();
+        $req=$bdd->query('SELECT id FROM operations WHERE (emetteur =' . $this->id . ' AND receveur=' . $user->id .') OR (emetteur =' . $user->id . ' AND receveur=' . $this->id .') ORDER BY date DESC LIMIT 0, 5');
+        while(($op = $req->fetch()) != null) {
+            $tab[$op['id']] = new Operation($op['id']);
+        }
+        return $tab;
+    }
+    
     public function update_password($pwd) {
         global $bdd;
         
