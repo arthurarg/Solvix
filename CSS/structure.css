@@ -92,7 +92,11 @@ article{
     height:20px;
     width:150px;
 }
-
+#button{
+    background-image: url("../images/magnifyingglass.png");
+    border:0;
+    background-color: 0;
+}
 header a {
     color : rgb(204,204,204);
     text-decoration:none;
@@ -112,10 +116,12 @@ header ul {
 #barredroite img{
     width:30px;
 }
+#barregauche li{
+    margin-top:3px;
+}
 header li {
     display : inline-block;
     margin-left:7%;
     margin-right:7%;
-    margin-top:0;
     vertical-align:middle;
 }
