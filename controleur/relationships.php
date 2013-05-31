@@ -10,17 +10,20 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
     
     case "create":
-        if (Saisies::isRelationship() && User::isUser($_GET['id']))
-            Relationship::save($_GET['id']);
-    
-        header('Location : index.php');
+        global $current_user;
+        if (Saisies::isRelationship() && User::isUser($_GET['id']) && !$current_user->isFriend($_GET['id']))
+            Relationship::save($_SESSION['id'],$_GET['id']);
+        
+        $flash="Ami ajouté !";
+        $redirection = true;
+        require_once 'controleur/staticpages.php';
         break;
     
     case "destroy":
         if (Saisies::isRelationship())
             Relationship::delete($_GET['id']);
     
-        header('Location : index.php');
+        header('Location: index.php');
         break;
         
     

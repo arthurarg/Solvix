@@ -4,6 +4,8 @@ Class Affichage {
     
     // Affiche un tableau d'utilisateurs
     public static function afficher_users($users) {
+        global $current_user;
+        
         if ($users == null)
             return;
         echo("<table>");
@@ -12,7 +14,9 @@ Class Affichage {
                 <td>". $user->prenom . "</td>
                 <td>". $user->nom . "</td>");
             if (!$user->estAmi)
-                echo("<td><a href='index.php?page=relationships&action=create&id='" . $user->id .">Ajouter</a></td>");
+                echo("<td><a href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a></td>");
+            else
+                echo("<td></td>");
             echo ("</tr>");
         }
         echo("<table>");

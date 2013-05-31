@@ -39,7 +39,7 @@
       }
       
       public static function isRelationShip() {
-          return (isset($_GET['id']) && is_int($_GET['id']));
+          return (isset($_GET['id']) && is_numeric($_GET['id']));
       }
       
       public static function isInscriptionValide() {
