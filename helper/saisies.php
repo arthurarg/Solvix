@@ -28,8 +28,8 @@
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle']) 
                   && isset($_POST['receveur'])
-                  && (int)($_POST['receveur'] > 0)
-                  && (int)$_POST['montant'] > 0);
+                  && ($_POST['receveur'] > 0)
+                  && $_POST['montant'] > 0);
       }
       
       public static function isTransfert() { // y'a pas de t à transfer en anglais !!!

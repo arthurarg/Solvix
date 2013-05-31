@@ -18,6 +18,11 @@ Class Affichage {
         echo("<table>");
     }
     
+    public static function afficher_name($id) {
+        $user=new User($id);
+        echo '<span class="name">'.$user->prenom.' '.$user->nom.'</span>';
+    }
+    
     // Affiche un tableau d'operations
     public static function afficher_operations($operations) {
         if ($operations == null)
@@ -68,5 +73,7 @@ Class Affichage {
         }
         echo('</table>');
     }
+    
+    
 }
 ?>

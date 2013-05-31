@@ -9,20 +9,56 @@ if (!isset($_GET['action'])) {
 
 switch ($_GET['action']) {
     
+    case "new":
+        if(!isset($_GET['type'])){
+            $flash="Action interdite";
+            $redirection=true;
+            require_once 'controleur/staticpages.php';
+        }
+        else{
+            $vue='vue/operations/new.php';
+            require_once 'vue/index.php';
+        }
+        return;
+    
     case "create":
-        // On verifie si le receveur existe et si c'est un ami
-        // On verifie si le solde est négatif ou pas
-        // Cas d'un deal
-        if (saisies::isDeal() && current_user::getSolde() > (int)$_POST['montant'] && $current_user::isFriend($_POST['receveur']))
-            Operation::deal($_SESSION['id'],$_POST['receveur'],(int)$_POST['montant'], $_POST['libelle']);
-        //On verifie que le montant (dans le cas d'un retrait) est inférieur au solde
-        // Cas d'un transfert
-        if (Saisies::isTransfert() && current_user::getSolde() > - (int)$_POST['montant'])
-            Operation::isTransfert($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
         
-        
-        
-        header('Location: index.php');
+        if(!isset($_GET['type']))
+            $flash="Action interdite";
+        else{
+            
+            switch($_GET['type']){
+                case "deal":
+                    $solde=$current_user->getSolde();
+                    if (saisies::isDeal() &&  $solde >= $_POST['montant'] && $current_user->isFriend($_POST['receveur'])){
+                        Operation::deal($_SESSION['id'],$_POST['receveur'],$_POST['montant'], $_POST['libelle']);
+                        $flash="Virement effectué";
+                    }
+                    else{
+                        if($solde<$_POST['montant'])
+                            $flash="Provisions insuffisantes";
+                        else
+                            $flash="Virement impossible";
+                    }
+                    
+                    break;
+                case "transfer":
+                    
+                    if (Saisies::isTransfert() && current_user::getSolde() > - $_POST['montant']){
+                        Operation::isTransfert($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
+                        $flash="Transfert réussit";
+                    }
+                    else
+                        $flash="Transfert impossible";
+                    break;
+                default:
+                    $flash="Action interdite";
+                    break;
+            }
+            
+        }
+        $vue='vue/staticpages/home.php';
+        require_once 'vue/index.php';
         return;
         
     
