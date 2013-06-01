@@ -27,6 +27,7 @@ Class Affichage {
         echo "<span class='name'><a href='index.php?page=users&action=show&id=$user->id'>".$user->prenom." ".$user->nom."</a></span>";
     }
     
+    
     // Affiche un tableau d'operations
     public static function afficher_operations($operations) {
         if ($operations == null)

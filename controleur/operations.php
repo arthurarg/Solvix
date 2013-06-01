@@ -16,7 +16,34 @@ switch ($_GET['action']) {
             require_once 'controleur/staticpages.php';
         }
         else{
-            $vue='vue/operations/new.php';
+            switch ($_GET['type']){
+                case "deal":
+                    if(isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id']>=0 && $current_user->isFriend($_GET['id'])){
+                        $id=$_GET['id'];
+                    }else{
+                        // méthode copié dans case=create
+                        $amis=$current_user->getFriends();
+                        if(strlen($amis==0)){
+                            $flash="Vous n'avez pas d'ami à qui faire un virement";
+                            $redirection=true;
+                            require_once 'controleur/staticpages.php';
+                            return;
+                        }
+                    }
+                    
+                    $vue='vue/operations/new_deal.php';
+                    break;
+                case "transfer":
+                    $vue='vue/operations/new_transfer.php';
+                    break;
+                default:
+                    $flash="Action interdite";
+                    $redirection=true;
+                    require_once 'controleur/staticpages.php';
+                    return;
+                    break;
+            }
+            
             require_once 'vue/index.php';
         }
         return;
@@ -30,16 +57,39 @@ switch ($_GET['action']) {
             switch($_GET['type']){
                 case "deal":
                     $solde=$current_user->getSolde();
-                    if (saisies::isDeal() &&  $solde >= $_POST['montant'] && $current_user->isFriend($_POST['receveur'])){
-                        Operation::deal($_SESSION['id'],$_POST['receveur'],$_POST['montant'], $_POST['libelle']);
-                        $flash="Virement effectué";
-                    }
-                    else{
-                        if($solde<$_POST['montant'])
+                    if(Saisies::isDealSafe() && ( $current_user->isFriend($_POST['receveur']) || $_POST['receveur']==-1 ) ){
+                        if($solde<$_POST['montant']){
                             $flash="Provisions insuffisantes";
-                        else
-                            $flash="Virement impossible";
+                            
+                            $id=$_POST['receveur'];                            
+                            $vue='vue/operations/new_deal.php';
+                            
+                            require_once 'vue/index.php';
+                            return;
+                        }
+                        else if($_POST['receveur']==-1){
+                            $flash="Veuillez choisir un bénéficiaire";
+                            
+                            // methode copiee à partir de case = new
+                            $amis=$current_user->getFriends();
+                            if(strlen($amis==0)){
+                                $flash="Vous n'avez pas d'ami à qui faire un virement";
+                                $redirection=true;
+                                require_once 'controleur/staticpages.php';
+                                return;
+                            }
+                            $vue='vue/operations/new_deal.php';
+                            
+                            require_once 'vue/index.php';
+                            return;
+                        }
+                        else{
+                            Operation::deal($_SESSION['id'],$_POST['receveur'],$_POST['montant'], $_POST['libelle']);
+                            $flash="Virement effectué";
+                        }
                     }
+                    else
+                        $flash="Virement impossible";
                     
                     break;
                 case "transfer":

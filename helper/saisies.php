@@ -24,12 +24,13 @@
           return true;
       }
       
-      public static function isDeal() {
+      public static function isDealSafe() {
           return (isset($_POST['montant']) 
                   && isset($_POST['libelle']) 
                   && isset($_POST['receveur'])
-                  && ($_POST['receveur'] > 0)
-                  && $_POST['montant'] > 0);
+                  && $_POST['montant'] > 0
+                  && ($_POST['receveur']>0 || $_POST['receveur']==-1)
+                  );
       }
       
       public static function isTransfert() { // y'a pas de t à transfer en anglais !!!

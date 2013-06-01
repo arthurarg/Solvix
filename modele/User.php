@@ -152,8 +152,8 @@ class User {
     
     
     // fonction à déplacer a terme
-    public function affichage(){
-        echo $this->prenom.' '.$this->nom.' ('.$this->email.')<br/>';
+    public function afficher_name(){
+        echo $this->prenom.' '.$this->nom;
     }
     
     public static function verifierMotdePasse($email,$password) {
