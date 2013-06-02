@@ -25,3 +25,17 @@ nav .email{
 
 nav .solde{
 }
+
+nav a {
+    font-style: normal;
+    text-decoration: none;
+    font-size: 12px;
+    color: rgb(116, 116, 116);
+    margin: 0;
+}
+
+nav .formulaire_virement {
+    font-style:italic;
+    text-decoration: none;
+    font-size: 13px;
+}

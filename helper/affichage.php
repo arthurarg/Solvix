@@ -8,18 +8,15 @@ Class Affichage {
         
         if ($users == null)
             return;
-        echo("<table>");
         foreach ($users as $user) {
-            echo("<tr>
-                <td><a href='index.php?page=users&action=show&id=$user->id'>". $user->prenom 
-                    . " " . $user->nom . "</a></td>");
+            echo("<div class='user-box'>
+                <a class='user-name' href='index.php?page=users&action=show&id=$user->id'>". $user->prenom . " " . $user->nom . "</a></td>");
             if (!$user->estAmi)
-                echo("<td><a href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a></td>");
+                echo("<a class='user-action' href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a>");
             else
-                echo("<td><a href='index.php?page=operations&action=new&type=deal&id=" . $user->id ."'>Virement</a></td>");
-            echo ("</tr>");
+                echo("<a class ='user-action' href='index.php?page=operations&action=new&type=deal&id=" . $user->id ."'>Virement</a>");
+            echo("</div>");
         }
-        echo("<table>");
     }
     
     public static function afficher_name($id) {
@@ -32,19 +29,19 @@ Class Affichage {
     public static function afficher_operations($operations) {
         if ($operations == null)
             return;
-        echo("<table>");
+        echo("<table class='tableau_operations'>");
+            echo("<tr><th> Emetteur </th><th> Receveur </th><th> Don </th><th> Libelle </th></tr>");
         foreach ($operations as $op) {
-            echo("<td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
+            echo("<tr><td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
             if ($op->receveur != null)
                 echo("<td><a href='index.php?page=users&action=show&id=".$op->receveur->id ."'>". $op->receveur->prenom . " " . $op->receveur->nom . "</a></td>");
             else
                 echo("<td> Aucun </td>");
             
             echo("<td>". $op->montant . "</td>
-                <td>". $op->libelle . "</td>
-                </tr>");
+                <td>". $op->libelle . "</td></tr>");
         }
-        echo("<table>");
+        echo("</table>");
     }
     
     public static function afficher_tableau($var) {

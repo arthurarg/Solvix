@@ -33,14 +33,18 @@ if (!isset($_SESSION['id'])) { ?>
         <p> Mes dernières opérations </p>
         <?php Affichage::afficher_operations($taboperations);?>
     </div>
-    <a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a>
 
+    <div class='button-link'>
+        <a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a>
+    </div>
     <div class="quelques_amis">
         <p> Mes amis </p>
         <?php Affichage::afficher_users($tabamis);?>
-    </div>
-    <a href='index.php?page=users&action=index'> Voir tous mes amis </a>
+    </div> 
 
+    <div class='button-link'>
+        <a href='index.php?page=users&action=index'> Voir tous mes amis </a>
+    </div>
 
 <?php
   }

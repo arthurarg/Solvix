@@ -6,7 +6,48 @@
         Purpose of the stylesheet follows.
 */
 
-table {
-    
+/* Affichage utilisateurs */
+.user-box {
+    position: relative;
+    border-radius:8px;
+    border:1px solid #BBCED8;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.user-box:hover {
+    background-color:rgb(192,222,237);
+}
+.user-box .user-name {
+    text-decoration: none;
+    color:#0084B4;
+    margin-bottom: 2px;
+}
+.user-box .user-action {
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
 }
 
+
+/* Affichage opérations */
+table {
+    border-radius: 8px;
+    border-collapse: collapse;
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 5px;
+    height: 15px;
+    text-align: left;
+}
+th {
+    background-color:rgb(192,222,237);
+} 
+
+table a {
+    text-decoration: none;
+    color: black;
+}

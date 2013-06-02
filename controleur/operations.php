@@ -4,7 +4,7 @@
 // RESTful utilise : index, create
 
 if (!isset($_GET['action'])) {
-    header("Location : index.php");
+    header("Location: index.php");
 }
 
 switch ($_GET['action']) {
@@ -32,21 +32,20 @@ switch ($_GET['action']) {
                     }
                     
                     $vue='vue/operations/new_deal.php';
+                    require_once 'vue/index.php';
                     break;
                 case "transfer":
                     $vue='vue/operations/new_transfer.php';
+                    require_once 'vue/index.php';
                     break;
                 default:
                     $flash="Action interdite";
                     $redirection=true;
                     require_once 'controleur/staticpages.php';
-                    return;
                     break;
-            }
-            
-            require_once 'vue/index.php';
+            }            
         }
-        return;
+        break;
     
     case "create":
         

@@ -15,6 +15,7 @@ if(isset($vue)){
         <link rel="stylesheet" href="CSS/structure.css" type="text/css" />
         <link rel="stylesheet" href="CSS/nav.css" type="text/css" />
         <link rel="stylesheet" href="CSS/content.css" type="text/css" />
+        <link rel="stylesheet" href="CSS/tableau.css" type="text/css" />
         </head>
     <body>
         <header>
@@ -36,13 +37,15 @@ if(isset($vue)){
             </ul>
         </header>
         
-        <?php if (isset($flash) && $flash!=null) {
-            echo("<div class = flash>" . $flash . "</div>");
-            $flash = null;
-        }  ?>  
+
        
         
         <div class="content">
+            
+            <?php if (isset($flash) && $flash!=null) {
+                echo("<div class = flash>" . $flash . "</div>");
+                $flash = null;
+            }  ?>
             
             <?php
             

@@ -19,3 +19,17 @@ article a:hover{
 body{
     font-family:sans-serif;
 }
+.button-link {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 50%;
+    padding: 5px;
+    
+    background-color:rgb(192,222,237);
+    border-radius: 8px;
+}
+.button-link a {
+    text-decoration: none;
+    color: black;
+}
