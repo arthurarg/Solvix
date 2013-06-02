@@ -29,6 +29,7 @@
                   && isset($_POST['libelle']) 
                   && isset($_POST['receveur'])
                   && $_POST['montant'] > 0
+                  && (int)$_POST['receveur']!=0
                   && ($_POST['receveur']>0 || $_POST['receveur']==-1)
                   );
       }

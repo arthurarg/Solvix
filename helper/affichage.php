@@ -15,7 +15,7 @@ Class Affichage {
                     . " " . $user->nom . "</a></td>");
             if (!$user->estAmi)
                 echo("<td><a href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a></td>");
-            else
+            elseif($user->id!=$current_user->id)
                 echo("<td><a href='index.php?page=operations&action=new&type=deal&id=" . $user->id ."'>Virement</a></td>");
             echo ("</tr>");
         }
