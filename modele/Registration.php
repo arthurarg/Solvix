@@ -38,7 +38,7 @@ class Registration{
         global $bdd;
         
         $req=$bdd->prepare("SELECT * FROM registration WHERE id=?");
-        $req->execute($id);
+        $req->execute(array($id));
         
         return $req->fetch();
     }
@@ -46,7 +46,7 @@ class Registration{
         global $bdd;
         
         $req=$bdd->prepare("DELETE FROM registration WHERE id=?");
-        $req->execute($id);
+        $req->execute(array($id));
         
         return $req->fetch();
     }

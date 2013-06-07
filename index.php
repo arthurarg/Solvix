@@ -4,6 +4,7 @@
     include_once 'modele/Operation.php';
     include_once 'modele/User.php';
     include_once 'modele/Relationship.php';
+    include_once 'modele/Registration.php';
     
     include_once 'helper/saisies.php';
     include_once 'helper/affichage.php';
@@ -41,6 +42,8 @@
             require_once 'controleur/users.php' ;
         else if ($page_demandee == 'sessions' && isset($_GET['action']) && $_GET['action'] == "create")
             require_once 'controleur/sessions.php' ;
+        else if ($page_demandee == 'registration' && isset($_GET['action']) && ($_GET['action'] == "new" || $_GET['action'] == "save"))
+            require_once 'controleur/registration.php' ;
         else
             header('Location: index.php');
         
