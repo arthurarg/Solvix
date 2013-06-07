@@ -11,7 +11,6 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
     case "new":
         if (Saisies::isInscriptionValide() && User::exists($_POST['mail'])==false && Registration::exists($_POST['mail'])==false) {
-            echo'ty';
             //Sauvegarde dans la bdd
             $code=Registration::newRegistration($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['password']);
             $id=Registration::exists($_POST['mail']);
@@ -39,9 +38,10 @@ switch ($_GET['action']) {
         
         Registration::erase($data['id']);
         
-        $flash="Inscription finalisée";
-        $redirection=true;
-        require_once 'controleur/staticpages.php';
+        $id = User::exists($data['email']);
+        if ($id != null)
+            $_SESSION['id'] = $id;
+        header('Location: index.php');
         return;
         
         break;
