@@ -20,5 +20,9 @@
     <page>
         <name>sessions</name>
         <loc>controleur/sessions.php</loc>
+    </page>
+    <page>
+        <name>registration</name>
+        <loc>controleur/registration.php</loc>
     </page> 
 </pages>

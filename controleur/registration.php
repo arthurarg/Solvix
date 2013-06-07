@@ -11,12 +11,18 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
     case "new":
         if (Saisies::isInscriptionValide() && User::exists($_POST['mail'])==false && Registration::exists($_POST['mail'])==false) {
-            
+            echo'ty';
             //Sauvegarde dans la bdd
             $code=Registration::newRegistration($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['password']);
-            
-            // envoyer le mail
-        } 
+            $id=Registration::exists($_POST['mail']);
+            // envoyer le maile
+            header("Location: helper/messages.php?code=$code&id=$id");
+        }
+        else{
+            $flash="Inscription impossible";
+            $redirection=true;
+            require_once 'controleur/staticpages.php';
+        }
         break;
     case "save":
         
@@ -29,11 +35,12 @@ switch ($_GET['action']) {
         if($data==null)
             header("Location: index.php");
         
-        User::save($data['nom'],$data['prenom'],$data['mail'],$data['password']);
+        User::saveCrypted($data['nom'],$data['prenom'],$data['email'],$data['password'], true);
         
-        Registration::erase($id);
+        Registration::erase($data['id']);
         
         $flash="Inscription finalisée";
+        $redirection=true;
         require_once 'controleur/staticpages.php';
         return;
         

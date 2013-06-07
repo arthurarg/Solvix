@@ -8,9 +8,9 @@ if(!isset($vue)){
     header("Location: ../index.php");
     return;
 }
-if(isset($_GET['type']) && $_GET['type']=="transfer"){
+if(isset($_GET['type']) && $_GET['type']=="load"){
     ?>
-<form action='index.php?page=operations&action=create&type=transfer' method='POST'>
+<form action='index.php?page=operations&action=create&type=load' method='POST'>
     <ul>
         <li><label for="libelle">Libellé</label> : <input type="text" id="libelle" name="libelle"/></li>
         <li><label for="montant">Montant</label> : <input type="number" id="montant" name="montant"/></li>

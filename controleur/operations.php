@@ -34,8 +34,12 @@ switch ($_GET['action']) {
                     $vue='vue/operations/new_deal.php';
                     require_once 'vue/index.php';
                     break;
-                case "transfer":
-                    $vue='vue/operations/new_transfer.php';
+                case "load":
+                    $vue='vue/operations/new_load.php';
+                    require_once 'vue/index.php';
+                    break;
+                case "back":
+                    $vue='vue/operations/new_back.php';
                     require_once 'vue/index.php';
                     break;
                 default:
@@ -91,10 +95,23 @@ switch ($_GET['action']) {
                         $flash="Virement impossible";
                     
                     break;
-                case "transfer":
+                case "load":
                     
                     if (Saisies::isTransfert() && $current_user->getSolde() > - $_POST['montant']){
                         Operation::transfer($_SESSION['id'],$_POST['montant'], $_POST['libelle']);
+                        $flash="Transfert réussi";
+                    }
+                    else
+                        $flash="Transfert impossible";
+                    break;
+                default:
+                    $flash="Action interdite";
+                    break;
+                    
+                case "back":
+                    
+                    if (Saisies::isTransfert() && $current_user->getSolde() > - $_POST['montant']){
+                        Operation::transfer($_SESSION['id'],-$_POST['montant'], $_POST['libelle']);
                         $flash="Transfert réussi";
                     }
                     else

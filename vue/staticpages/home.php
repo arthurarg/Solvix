@@ -15,7 +15,7 @@ if (!isset($_SESSION['id'])) { ?>
         <p><input type="submit" value="Se connecter"></p>
     </form>
 
-    <form class='formulaire_inscription' action="index.php?page=users&action=create" method="post">
+    <form class='formulaire_inscription' action="index.php?page=registration&action=new" method="post">
         <p><label for="prenom">Prénom</label> : <input type="text" name="prenom" id="prenom" /></p>
         <p><label for="nom">Nom</label> : <input type="text" name="nom" id="nom" /></p>
         <p><label for="mail">E-mail</label> : <input type="email" name="mail" id="mail" /></p>

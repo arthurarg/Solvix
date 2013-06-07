@@ -202,6 +202,17 @@ class User {
         return ($req->execute(array($mail,sha1($password),$nom,$prenom)));
     }
     
+    public static function saveCrypted($prenom,$nom,$mail,$password,$crypted) {
+        
+        global $bdd;
+        
+        if($crypted!=true)
+            $password=sha1($password);
+        
+        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW())");
+        return ($req->execute(array($mail,$password,$nom,$prenom)));
+    }
+    
     public static function rechercher($recherche){
         
         global $bdd;
