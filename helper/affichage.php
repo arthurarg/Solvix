@@ -13,7 +13,7 @@ Class Affichage {
                 <a class='user-name' href='index.php?page=users&action=show&id=$user->id'>". $user->prenom . " " . $user->nom . "</a></td>");
             if (!$user->estAmi)
                 echo("<a class='user-action' href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a>");
-            else
+            else if($user->id!=$current_user->id)
                 echo("<a class ='user-action' href='index.php?page=operations&action=new&type=deal&id=" . $user->id ."'>Virement</a>");
             echo("</div>");
         }

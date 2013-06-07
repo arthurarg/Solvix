@@ -138,3 +138,6 @@ header li {
     width:20%;
     z-index:10;
 }
+#masquer:hover{
+    font-weight: bold;
+}
