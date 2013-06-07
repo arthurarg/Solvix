@@ -64,9 +64,17 @@ switch ($_GET['action']) {
         if( isset($_POST['recherche'])){
     
             $resultats=  User::rechercher($_POST['recherche']);
-
-            $vue='vue/users/resultat_recherche.php';
-            require_once 'vue/index.php';
+            
+            if(isset($_GET['type']) && $_GET['type']=="dynamic"){
+                $vue='vue/users/resultat_recherche.php';
+                require_once $vue;
+            }
+            else{
+            
+                $vue='vue/users/resultat_recherche.php';
+                require_once 'vue/index.php';
+                
+            }
         }
         break;
         

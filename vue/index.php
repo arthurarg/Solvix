@@ -18,7 +18,8 @@ if(isset($vue)){
         <link rel="stylesheet" href="CSS/tableau.css" type="text/css" />
         
         <script type="text/javascript" src="javascript/jquery-1.10.1.js"> </script>
-        <script type="text/javascript" src="javascript/general.js"> </script>
+        <script type="text/javascript" src="javascript/general.js"> </script>        
+        <script type="text/javascript" src="javascript/search.js"> </script>
         </head>
     <body>
         <header>
@@ -29,7 +30,7 @@ if(isset($vue)){
             </ul>
             <ul id="barredroite">
                 <li>
-                    <form action='index.php?page=users&action=search' method='POST'>
+                    <form action='index.php?page=users&action=search' method='POST' id="form_search">
                         <input id="barre_recherche" type="text" name="recherche" />
                         <input id="button" type="submit" value="go"/>
                     </form>
