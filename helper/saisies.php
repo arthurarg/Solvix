@@ -15,13 +15,26 @@
   class Saisies {
       
       public static function isName($string) {
-          return true; // A modifier
+          return preg_match("#^[a-z]+$#",$string);
       }
       public static function isMail($string) {
-          return true; // A modifier
+          return preg_match("#^[a-z0-9-_.]+@[a-z]{2,}\.[a-z]{2,4}$#",$string);
       }
       public function isIban($string) {
-          return true;
+            $other_string = substr($string,4) . substr($string,0,4);
+            $chars=str_split($other_string);
+            $new_string='';
+            foreach($chars as $char) {
+                if (!is_numeric($char))
+                  $new_string= $new_string . (ord($char)-87);
+                else
+                  $new_string= $new_string . $char;  
+            }
+            while (strlen($new_string) > 2) {
+                $new_string = (int)(substr($new_string,0,8))%97 . substr($new_string,8);
+            }
+            $final_string = $new_string%97; // (cas ou ça vaut 98)
+            return($final_string==1);
       }
       
       public static function isDealSafe() {
