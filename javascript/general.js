@@ -18,6 +18,12 @@ $(document).ready(function(){
        }
    });
    
+   $(".formulaire_edition #submit").click(function(){
+       
+       if (true)
+           alert("true");
+   });
+   
 });
 
 
