@@ -103,7 +103,7 @@ class User {
         global $bdd;
         $tab = array();
         
-        $req=$bdd->query('SELECT id FROM operations WHERE emetteur =' . $this->id .' OR receveur=' . $this->id . ' ORDER BY date DESC LIMIT 0, 5');
+        $req=$bdd->query('SELECT id FROM operations WHERE emetteur =' . $this->id .' OR receveur=' . $this->id . ' ORDER BY date DESC');
 
         while(($op = $req->fetch()) != null) {
             $tab[$op['id']]=new Operation($op['id']);

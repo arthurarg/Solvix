@@ -13,9 +13,9 @@ switch ($_GET['action']) {
         if (!isset($_GET['id']) || $_GET['id']==$current_user->id || ! User::isUser($_GET['id']))
                 header('Location: index.php');
         
-        $user = new User($_GET['id']);
-        $taboperations = $user->getCommonOperations($current_user);
-        $tabamis=$user->getSomeFriends();
+        $user_showed = new User($_GET['id']);
+        $taboperations = $user_showed->getCommonOperations($current_user);
+        $tabamis=$user_showed->getSomeFriends();
         
         $vue='vue/users/show.php';
         require_once 'vue/index.php';

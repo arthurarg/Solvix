@@ -24,7 +24,7 @@ header{
 }
 
 footer{
-    margin-top:5px;
+    margin-top:15px;
     bottom:0;
     left:0;
     color:rgb(47,47, 47);
@@ -39,7 +39,6 @@ body {
 
 .content {
     background-color: rgba(255, 255, 255, 0.4);
-    height: 88%;
     margin-left: 15%;
     padding: 10px;
     position: absolute;
