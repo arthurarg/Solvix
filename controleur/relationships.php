@@ -21,8 +21,8 @@ switch ($_GET['action']) {
     
     case "destroy":
         if (Saisies::isRelationship())
-            Relationship::delete($_GET['id']);
-    
+            Relationship::delete($current_user->id, $_GET['id']);
+        
         header('Location: index.php');
         break;
         

@@ -15,7 +15,7 @@ if (isset($_SESSION['id'])) { ?>
     <p class="nom"><?php echo $user_showed->prenom.' '.$user_showed->nom ?></p>
     <p class="email"><?php echo $user_showed->email ?></p>
     <p><a href="index.php?page=operations&action=new&type=deal&id=<?php echo $user_showed->id ?>"> Effectuer un virement à cette personne</a></p>
-    
+    <p><a class="confirmation" value="<?php echo $user_showed->id ?>">Ne plus être amis avec cette personne</a></p>
     <div class="dernieres_operations">
         <p> Dernieres operations en commun </p>
         <?php Affichage::afficher_operations($taboperations);?>

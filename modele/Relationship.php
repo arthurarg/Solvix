@@ -17,7 +17,7 @@ class Relationship {
         
         global $bdd;
         
-        $req=$bdd->prepare('DELETE FROM operations WHERE id1 = ? AND id2 = ?');
+        $req=$bdd->prepare('DELETE FROM relationships WHERE id1 = ? AND id2 = ?');
         $req->execute(array($id1,$id2));
     }
 }

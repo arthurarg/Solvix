@@ -22,6 +22,12 @@ $(document).ready(function(){
        $(".flash").hide();
    });
    
+   $(".confirmation").click(function(){
+       var choice=confirm("Etes-vous sur ?");
+       if(choice==true)
+           location.replace('index.php?page=relationships&action=destroy&id='+$(".confirmation").attr("value"));
+   });
+   
 });
 
 
