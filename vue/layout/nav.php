@@ -25,7 +25,7 @@ if(isset($vue)){
                 <?php foreach($current_user->getFriends() as $user) {
                     echo ("<option value='" . $user->id ."'>" . $user->prenom . " " . $user->nom . "</option>");
             }?></select>
-            <input type='text' placeholder='0' size='3' id='montant' name="montant"> </input> € <br/>
+            <span class='montant'><input type='text' placeholder='0' size='3' id='montant' name="montant"> </input> € </span><br/>
             <input placeholder=' Libelle...' size='20' type='text' id='libelle' name="libelle"> </input>
            <input type="submit" id='valider' value="Donner">
            </p></form>
