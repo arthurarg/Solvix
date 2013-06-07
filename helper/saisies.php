@@ -67,11 +67,11 @@
                   && $_POST['password']===$_POST['confirmation']);
       }
       
-      public function isValidUpdate() {
+      public static function isValidUpdate() {
           if (!isset($_POST['password']))
               return false;
           if (isset($_POST['new_password'])) {
-              if (!isset($_POST['new_confirmation']) || !($POST['new_confirmation']===$POST['new_password']))
+              if (!isset($_POST['new_confirmation']) || !($_POST['new_confirmation']===$_POST['new_password']))
                   return false;
           }
           if (isset($_POST['iban']) && !Saisies::isIBAN($_POST['iban']))
