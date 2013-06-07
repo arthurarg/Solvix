@@ -19,17 +19,20 @@ article a:hover{
 body{
     font-family:sans-serif;
 }
-.button-link {
-    display: inline-block;
+button {
     margin-top: 10px;
-    margin-bottom: 20px;
-    margin-left: 50%;
-    padding: 5px;
-    
-    background-color:rgb(192,222,237);
-    border-radius: 8px;
+    display: inline-block;
+    position: absolute;
+    right: 35px;
 }
-.button-link a {
+button a {
     text-decoration: none;
     color: black;
+}
+button a:hover {
+    text-decoration: none;
+}
+
+.quelques_amis, .dernieres_operations {
+    margin-bottom: 50px;
 }
