@@ -20,10 +20,10 @@
     
 //Caractères spéciaux échappés pour des raisons de securite
     foreach ($_GET as $var)
-        $var = htmlspecialchars ($var);
+        $var = strtolower(htmlspecialchars ($var));
     
     foreach ($_POST as $var)
-        $var = htmlspecialchars ($var);
+        $var = strtolower(htmlspecialchars ($var));
  
 
 //Traitement des pages (tableau xml)

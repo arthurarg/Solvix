@@ -19,7 +19,7 @@ article a:hover{
 body{
     font-family:sans-serif;
 }
-button {
+.button_home {
     margin-top: 10px;
     display: inline-block;
     position: absolute;

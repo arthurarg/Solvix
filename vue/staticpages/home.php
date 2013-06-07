@@ -32,7 +32,7 @@ if (!isset($_SESSION['id'])) { ?>
     <div class="dernieres_operations">
         <p> Mes dernières opérations </p>
         <?php Affichage::afficher_operations($taboperations);?>
-        <button type='button'>
+        <button class='button_home' type='button'>
         <a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a>
         </button>
     </div>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['id'])) { ?>
         <p> Mes amis </p>
         <?php Affichage::afficher_users($tabamis);?>
         
-        <button type='button'>
+        <button class='button_home' type='button'>
         <a href='index.php?page=users&action=index'> Voir tous mes amis </a>
         </button>
     </div> 

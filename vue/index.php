@@ -18,6 +18,7 @@ if(isset($vue)){
         <link rel="stylesheet" href="CSS/tableau.css" type="text/css" />
         
         <script type="text/javascript" src="javascript/jquery-1.10.1.js"> </script>
+        <script type="text/javascript" src="javascript/formulaires.js"> </script>
         <script type="text/javascript" src="javascript/general.js"> </script>        
         <script type="text/javascript" src="javascript/search.js"> </script>
         </head>
