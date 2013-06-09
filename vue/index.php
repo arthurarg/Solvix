@@ -24,6 +24,7 @@ if(isset($vue)){
         </head>
     <body>
         <header>
+            <div id="barreheader">
             <ul id="barregauche">
                 <li> <a href='index.php'> Accueil</a> </li>
                 <li> <a href='index.php?page=users&action=index'>Amis</a> </li>
@@ -40,6 +41,7 @@ if(isset($vue)){
                     <a href='index.php?page=users&action=edit'> <img src="images/settings.png" alt="Réglages"/> </a>
                 </li>
             </ul>
+            </div>
         </header>
         
 
@@ -48,7 +50,7 @@ if(isset($vue)){
         <div class="content">
             
             <?php if (isset($flash) && $flash!=null) {
-                echo("<div class = flash>" . $flash . "<span id=\"masquer\" >X</span></div>");
+                echo("<div class = flash>" . $flash . "<span id=\"masquer\" > X</span></div>");
                 $flash = null;
             }  ?>
             
