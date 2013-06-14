@@ -6,7 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-header, footer {
+header {
     width : 100%;
     height: 40px;
     position:absolute;
@@ -40,8 +40,8 @@ body {
 .content {
     background-color: rgba(255, 255, 255, 0.4);
     margin-left: 10%;
+    margin-top: 40px;
     padding: 10px;
-    position: absolute;
     top: 6%;
     width: 80%;
     min-width: 800px;
@@ -55,6 +55,7 @@ article, nav {
 }
 
 article, nav .module {
+    position: relative;
     display:inline-block;
     border-radius:8px;
     border:1px solid #BBCED8;
@@ -135,7 +136,13 @@ header li {
     width: 20%;
     text-align: center;
 }
+#masquer {
+     font-weight:bold;     
+     margin-left:5px;
+     padding-left:1px;
+     padding-right:1px;
+     text-align:center;
+}
 #masquer:hover{
-    border: 1px solid black;
     font-weight: bold;
 }
