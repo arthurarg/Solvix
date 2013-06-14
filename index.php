@@ -5,6 +5,7 @@
     include_once 'modele/User.php';
     include_once 'modele/Relationship.php';
     include_once 'modele/Registration.php';
+    include_once 'modele/Alert.php';
     
     include_once 'helper/saisies.php';
     include_once 'helper/affichage.php';

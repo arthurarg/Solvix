@@ -1,0 +1,16 @@
+/* 
+    Document   : alerts
+    Created on : 14 juin 2013, 15:51:14
+    Author     : Arthur
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.alert{
+    border:1px solid black;
+    background-color: white;
+}
+

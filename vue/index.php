@@ -16,10 +16,12 @@ if(isset($vue)){
         <link rel="stylesheet" href="CSS/nav.css" type="text/css" />
         <link rel="stylesheet" href="CSS/content.css" type="text/css" />
         <link rel="stylesheet" href="CSS/tableau.css" type="text/css" />
+        <link rel="stylesheet" href="CSS/alerts.css" type="text/css" />
         
         <script type="text/javascript" src="javascript/jquery-1.10.1.js"> </script>
         <script type="text/javascript" src="javascript/general.js"> </script>        
-        <script type="text/javascript" src="javascript/search.js"> </script>
+        <script type="text/javascript" src="javascript/search.js"> </script>       
+        <script type="text/javascript" src="javascript/alerts.js"> </script>
         </head>
     <body>
         <header>
@@ -44,7 +46,7 @@ if(isset($vue)){
 
        
         
-        <div class="content">
+        <div id="content">
             
             <?php if (isset($flash) && $flash!=null) {
                 echo("<div class = flash>" . $flash . "<span id=\"masquer\" >X</span></div>");
@@ -72,6 +74,8 @@ if(isset($vue)){
         <article>
             <?php require_once $vue; ?>
         </article>
+        
+            <div id="alerts"> <?php require_once 'controleur/alerts.php' ?></div>
             
            
             
