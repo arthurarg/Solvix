@@ -8,6 +8,12 @@ $(document).ready(function() {
 
     
     $(".infos_personnelles .modifier_password").click(function() {
+        $(".formulaire_edition #password").value="";
+        $(".formulaire_edition #new_password").value="";
+        $(".formulaire_edition #new_confirmation").value="";
+        $(".formulaire_edition #email").value="";
+        $(".formulaire_edition #iban").value="";
+        
         $(".formulaire_edition .password").show();
         $(".formulaire_edition .new_password").show();
         $(".formulaire_edition .new_confirmation").show();
@@ -17,6 +23,12 @@ $(document).ready(function() {
     });
     
     $(".infos_personnelles .modifier_iban").click(function() {
+        $(".formulaire_edition #password").value="";
+        $(".formulaire_edition #new_password").value="";
+        $(".formulaire_edition #new_confirmation").value="";
+        $(".formulaire_edition #email").value="";
+        $(".formulaire_edition #iban").value="";
+        
         $(".formulaire_edition .password").show();
         $(".formulaire_edition .new_password").hide();
         $(".formulaire_edition .new_confirmation").hide();
@@ -26,6 +38,12 @@ $(document).ready(function() {
     });
         
     $(".infos_personnelles .modifier_email").click(function() {
+        $(".formulaire_edition #password").value="";
+        $(".formulaire_edition #new_password").value="";
+        $(".formulaire_edition #new_confirmation").value="";
+        $(".formulaire_edition #email").value="";
+        $(".formulaire_edition #iban").value="";
+        
         $(".formulaire_edition .password").show();
         $(".formulaire_edition .new_password").hide();
         $(".formulaire_edition .new_confirmation").hide();

@@ -9,6 +9,9 @@
 root { 
     display: block;
 }
+article {
+    
+}
 article a{
     color:#0084B4;
     text-decoration: none;
@@ -35,4 +38,18 @@ button a:hover {
 
 .quelques_amis, .dernieres_operations {
     margin-bottom: 50px;
+}
+
+.button_user_1 {
+    margin-top: 10px;
+    position : absolute;
+    right: 35px;
+    top: 30px;
+}
+
+.button_user_2 {
+    margin-top: 10px;
+    position : absolute;
+    right: 35px;
+    top: 55px;
 }

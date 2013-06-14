@@ -14,7 +14,7 @@
 
 
 <form class='formulaire_edition' action="index.php?page=users&action=update" method="post">
-        <p class="password">Mot de passe : <input type="password" id="password" name="password" /></p>
+        <p class="password">Mot de passe : <input type="password" id="password" name="password" value="" /></p>
         <p class="new_password">Nouveau mot de passe : <input type="password" id="new_password" name="new_password" /></p>
         <p class="new_confirmation">Confirmation nouveau mot de passe : <input type="password" id="new_confirmation" name="new_confirmation" /></p>
         <p class="email">Email : <input type="email" id="email" name="email" /></p>
