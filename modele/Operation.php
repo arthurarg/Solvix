@@ -42,13 +42,16 @@ class Operation {
     public static function deal($emetteur, $receveur, $montant, $libelle){
         
         global $bdd;
-        $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 1, :montant, :emetteur, :receveur, :libelle, NOW()  )');
+        $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 1, :montant, :emetteur, :receveur, :libelle, NOW(), 0  )');
         $req->execute( array(
             'montant'=>$montant,
             'emetteur'=>$emetteur,
             'receveur'=>$receveur,
             'libelle'=>$libelle,
             ) );
+        
+        $user=new User($emetteur);
+        Alert::add($receveur, 'Virement de '.$user->prenom.' '.$user->nom, $user->prenom.' '.$user->nom.' vous a versé '.$montant.' euros');
     }
     
     //Recharge d'un compte ou retrait d'argent
@@ -56,7 +59,7 @@ class Operation {
         
         global $bdd;
         
-        $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 0, :montant, :emetteur, NULL, :libelle, NOW()  )');
+        $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 0, :montant, :emetteur, NULL, :libelle, NOW(), 0  )');
         $req->execute( array(
             'montant'=>$montant,
             'emetteur'=>$emetteur,
