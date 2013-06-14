@@ -14,19 +14,23 @@ if (isset($_SESSION['id'])) { ?>
     
     <p class="nom"><?php echo $user_showed->prenom.' '.$user_showed->nom ?></p>
     <p class="email"><?php echo $user_showed->email ?></p>
-    <p><a href="index.php?page=operations&action=new&type=deal&id=<?php echo $user_showed->id ?>"> Effectuer un virement à cette personne</a></p>
-    <p><a class="confirmation" value="<?php echo $user_showed->id ?>">Ne plus être amis avec cette personne</a></p>
+    <button type='button' class='button_user_1'><a href="index.php?page=operations&action=new&type=deal&id=<?php echo $user_showed->id ?>"> Virement</a></button>
+    <br/>
+    <?php if ($user_showed->estAmi) { ?>
+    <button type='button' class='button_user_2'><a class="confirmation" value="<?php echo $user_showed->id ?>">Supprimer cet ami</a></button>
+    <?php } ?>
+    
     <div class="dernieres_operations">
         <p> Dernieres operations en commun </p>
         <?php Affichage::afficher_operations($taboperations);?>
+        <button type='button' class='button_home'><a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a></button>
     </div>
-    <a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a>
 
     <div class="quelques_amis">
         <p> Amis de cette personne </p>
         <?php Affichage::afficher_users($tabamis);?>
+        <button type='button' class='button_home'><a href='index.php?page=users&action=index'> Voir tous mes amis </a></button>
     </div>
-    <a href='index.php?page=users&action=index'> Voir tous mes amis </a>
     <?php
 }
 ?>

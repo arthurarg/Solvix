@@ -8,7 +8,7 @@
 
 header, footer {
     width : 100%;
-    height: 6%;
+    height: 40px;
     position:absolute;
     padding-left:15%;
     z-index:2;
@@ -39,11 +39,12 @@ body {
 
 #content {
     background-color: rgba(255, 255, 255, 0.4);
-    margin-left: 15%;
+    margin-left: 10%;
     padding: 10px;
     position: absolute;
     top: 6%;
-    width: 70%;
+    width: 80%;
+    min-width: 800px;
     z-index: 1;
 }
 
@@ -60,7 +61,7 @@ article, nav .module {
     min-height:20%;
     word-wrap:break-word;
     background-color:rgb(249, 249, 249);
-    padding:10px;
+    padding:9px;
 }
 
 nav {
@@ -76,16 +77,12 @@ article{
 }
 
 /* Gestion du header */
-#barregauche{
+#barreheader{
     position:absolute;
     top:0;
-    left:15%;
+    min-width: 800px;
 }
-#barredroite{
-    position:absolute;
-    top:0;
-    right:25%;
-}
+
 
 #barre_recherche{
     background-color:rgb(204,204,204);
@@ -112,7 +109,7 @@ header a:hover {
 
 header ul {
     display : inline-block;
-    width:30%;
+    width: 350px;
     margin-top:0;
     padding:6px;
 }
@@ -124,8 +121,8 @@ header ul {
 }
 header li {
     display : inline-block;
-    margin-left:7%;
-    margin-right:7%;
+    margin-left:5%;
+    margin-right:5%;
     vertical-align:middle;
 }
 
@@ -135,9 +132,10 @@ header li {
     background-color:green;
     margin-left:40%;
     top:40px;
-    width:20%;
-    z-index:10;
+    width: 20%;
+    text-align: center;
 }
 #masquer:hover{
+    border: 1px solid black;
     font-weight: bold;
 }

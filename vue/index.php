@@ -25,22 +25,25 @@ if(isset($vue)){
         </head>
     <body>
         <header>
-            <ul id="barregauche">
-                <li> <a href='index.php'> Accueil</a> </li>
-                <li> <a href='index.php?page=users&action=index'>Amis</a> </li>
-                <li> <a href='index.php?page=operations&action=index'>Opérations</a> </li>
-            </ul>
-            <ul id="barredroite">
-                <li>
-                    <form action='index.php?page=users&action=search' method='POST' id="form_search">
-                        <input id="barre_recherche" type="text" name="recherche" />
-                        <input id="button" type="submit" value="go"/>
-                    </form>
-                </li>
-                <li>
-                    <a href='index.php?page=users&action=edit'> <img src="images/settings.png" alt="Réglages"/> </a>
-                </li>
-            </ul>
+            <?php if (isset($current_user)) { ?>
+                <div id="barreheader">
+                <ul id="barregauche">
+                    <li> <a href='index.php'> Accueil</a> </li>
+                    <li> <a href='index.php?page=users&action=index'>Amis</a> </li>
+                    <li> <a href='index.php?page=operations&action=index'>Opérations</a> </li>
+                </ul>
+                <ul id="barredroite">
+                    <li>
+                        <form action='index.php?page=users&action=search' method='POST' id="form_search">
+                            <input id="barre_recherche" type="search" placeholder="Recherche..." name="recherche" />
+                        </form>
+                    </li>
+                    <li>
+                        <a href='index.php?page=users&action=edit'> <img src="images/settings.png" alt="Réglages"/> </a>
+                    </li>
+                </ul>
+                </div>
+            <?php } ?>
         </header>
         
 
@@ -49,7 +52,7 @@ if(isset($vue)){
         <div id="content">
             
             <?php if (isset($flash) && $flash!=null) {
-                echo("<div class = flash>" . $flash . "<span id=\"masquer\" >X</span></div>");
+                echo("<div class = flash>" . $flash . "<span id=\"masquer\" > x</span></div>");
                 $flash = null;
             }  ?>
             

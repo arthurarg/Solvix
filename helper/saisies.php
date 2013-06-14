@@ -38,9 +38,9 @@
       }
       
       public static function isDealSafe() {
-          return (isset($_POST['montant']) 
-                  && isset($_POST['libelle']) 
-                  && isset($_POST['receveur'])
+          return (!empty($_POST['montant']) 
+                  && !empty($_POST['libelle']) 
+                  && !empty($_POST['receveur'])
                   && $_POST['montant'] > 0
                   && (int)$_POST['receveur']!=0
                   && ($_POST['receveur']>0 || $_POST['receveur']==-1)
@@ -48,8 +48,8 @@
       }
       
       public static function isTransfert() { // y'a pas de t à transfer en anglais !!!
-          return (isset($_POST['montant']) 
-                  && isset($_POST['libelle'])
+          return (!empty($_POST['montant']) 
+                  && !empty($_POST['libelle'])
                   && (int)($_POST['montant']) != 0
                   && $_POST['montant']>0);
       }
@@ -59,22 +59,22 @@
       }
       
       public static function isInscriptionValide() {
-          return (isset($_POST['nom']) && Saisies::isName($_POST['nom']) 
-                  && isset($_POST['prenom']) && Saisies::isName($_POST['prenom'])
-                  && isset($_POST['mail']) && Saisies::isMail($_POST['mail'])
-                  && isset($_POST['password'])
-                  && isset($_POST['confirmation'])
+          return (!empty($_POST['nom']) && Saisies::isName($_POST['nom']) 
+                  && !empty($_POST['prenom']) && Saisies::isName($_POST['prenom'])
+                  && !empty($_POST['mail']) && Saisies::isMail($_POST['mail'])
+                  && !empty($_POST['password'])
+                  && !empty($_POST['confirmation'])
                   && $_POST['password']===$_POST['confirmation']);
       }
       
       public static function isValidUpdate() {
-          if (!isset($_POST['password']))
+          if (empty($_POST['password']))
               return false;
-          if (isset($_POST['new_password'])) {
-              if (!isset($_POST['new_confirmation']) || !($_POST['new_confirmation']===$_POST['new_password']))
+          if (!empty($_POST['new_password'])) {
+              if (!empty($_POST['new_confirmation']) || !($_POST['new_confirmation']===$_POST['new_password']))
                   return false;
           }
-          if (isset($_POST['iban']) && !Saisies::isIBAN($_POST['iban']))
+          if (!empty($_POST['iban']) && !Saisies::isIBAN($_POST['iban']))
               return false;
           
           return true;

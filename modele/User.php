@@ -14,7 +14,7 @@
 class User {
     public $id;
     public $nom, $prenom;
-    public $email;
+    public $email, $iban;
     public $estAmi;
     
     public function __construct($id) {
@@ -37,9 +37,10 @@ class User {
         $rep=$bdd->query('SELECT * FROM users WHERE id='.$this->id);
         $data=$rep->fetch();
         if($data!=null){
-            $this->nom=$data['nom'];
-            $this->prenom=$data['prenom'];
+            $this->nom=ucfirst($data['nom']);
+            $this->prenom=ucfirst($data['prenom']);
             $this->email=$data['email'];
+            $this->iban=$data['IBAN'];
         }
     }
     

@@ -15,13 +15,14 @@ class Operation {
     public $id;
     public $emetteur, $receveur;
     public $montant;
-    public $libelle;
+    public $libelle, $date;
     
     
     public function __construct($id) {
 
         global $bdd;
-        $req=$bdd->prepare("SELECT * FROM operations WHERE id=?");
+        $req=$bdd->prepare("SELECT id, emetteur, receveur, montant, libelle, 
+            DATE_FORMAT(date, '%d/%m/%Y') AS date FROM operations WHERE id=?");
         $req->execute(array($id));
         $op = $req->fetch();
         
@@ -33,6 +34,7 @@ class Operation {
             $this->receveur = null;
         $this->montant = $op['montant'];
         $this->libelle = $op['libelle'];
+        $this->date = $op['date'];
     }
 
 

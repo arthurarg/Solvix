@@ -6,8 +6,11 @@ Class Affichage {
     public static function afficher_users($users) {
         global $current_user;
         
-        if ($users == null)
+        if ($users == null) {
+            echo("Aucun utilisateur à afficher");
             return;
+        }
+        
         foreach ($users as $user) {
             echo("<div class='user-box'>
                 <a class='user-name' href='index.php?page=users&action=show&id=$user->id'>". $user->prenom . " " . $user->nom . "</a></td>");
@@ -27,54 +30,32 @@ Class Affichage {
     
     // Affiche un tableau d'operations
     public static function afficher_operations($operations) {
-        if ($operations == null)
+        global $current_user;
+        
+        if ($operations == null) {
+            echo("Aucune opération à afficher");
             return;
+        }
         echo("<table class='tableau_operations'>");
-            echo("<tr><th> Emetteur </th><th> Receveur </th><th> Don </th><th> Libelle </th></tr>");
+            echo("<tr><th> Emetteur </th><th> Bénéficiaire </th><th> Crédit </th><th>Débit</th><th> Libelle </th><th>Date</th></tr>");
         foreach ($operations as $op) {
             echo("<tr><td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
             if ($op->receveur != null)
                 echo("<td><a href='index.php?page=users&action=show&id=".$op->receveur->id ."'>". $op->receveur->prenom . " " . $op->receveur->nom . "</a></td>");
             else
-                echo("<td> Aucun </td>");
+                echo("<td> Retrait/Recharge </td>");
             
-            echo("<td>". $op->montant . "</td>
-                <td>". $op->libelle . "</td></tr>");
+            if ($op->emetteur->id==$current_user->id && ($op->receveur!=null ||$op->montant<0 ))
+                echo("<td></td><td>". abs($op->montant) . "</td>");
+            else
+                echo("<td>". abs($op->montant) . "</td><td></td>");
+                
+            
+            echo("<td>". $op->libelle . "</td><td>". $op->date . "</td></tr>");
         }
         echo("</table>");
     }
-    
-    public static function afficher_tableau($var) {
-        if ($var==null)
-            return;
-        
-        $i=0;
-        //Affichage des libellés des colonnes
-        $ligne=$var->fetch();
-        if ($ligne==null)
-            return;
-        
-        echo('<table><tr>');
-        foreach(array_keys($ligne) as $keys) {
-            if ($i % 2 == 0)
-                echo('<th>'.$keys.'</th>');
-            $i++;
-        }
-        echo('</tr>');
-        
-        //Affichage des donnees
-        while($ligne!=null) {
-            echo('<tr>');
-            foreach($ligne as $donnees) {
-                if ($i % 2 == 0)
-                    echo('<td>'.$donnees.'</td>');
-                $i++;
-            }
-            echo('</tr>');
-            $ligne = $var->fetch();
-        }
-        echo('</table>');
-    }
+
     
     
 }
