@@ -28,6 +28,14 @@ $(document).ready(function(){
            location.replace('index.php?page=relationships&action=destroy&id='+$(".confirmation").attr("value"));
    });
    
+   
+   //$("#menu_alerts").click($("#alerts").toggle());
+   
+   $("#alerts").toggle();
+    $("#menu_alerts").click(function(){
+        $("#alerts").slideToggle("fast");
+    });
+$("#alerts").hide();
 });
 
 

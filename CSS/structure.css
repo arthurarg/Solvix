@@ -11,7 +11,7 @@ header, footer {
     height: 40px;
     position:absolute;
     padding-left:15%;
-    z-index:2;
+    z-index:3;
 }
 
 header{
@@ -139,3 +139,4 @@ header li {
     border: 1px solid black;
     font-weight: bold;
 }
+

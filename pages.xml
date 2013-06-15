@@ -25,4 +25,8 @@
         <name>registration</name>
         <loc>controleur/registration.php</loc>
     </page> 
+    <page>
+        <name>alerts</name>
+        <loc>controleur/alerts.php</loc>
+    </page> 
 </pages>

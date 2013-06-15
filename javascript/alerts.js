@@ -9,9 +9,13 @@ $(document).ready(function(){
 });
 
     function init(){    
-        $(".close").click(function(){
-            $.post("controleur/alerts.php?action=print&id="+$(this).attr("id"),'', function(rep){
-                $("#alerts").html(rep);
+        $(".alerts_item").click(function(){
+            $.post("index.php?page=alerts&da="+$(this).attr("id"),'', function(rep){
+                $("#alerts_list").html(rep);
+                if(rep==""){
+                    $("#image_alert").attr("src","images/no_alert.png");
+                }
+                
                 init();
             });
         });

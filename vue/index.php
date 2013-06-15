@@ -22,6 +22,7 @@ if(isset($vue)){
         <script type="text/javascript" src="javascript/general.js"> </script>        
         <script type="text/javascript" src="javascript/search.js"> </script>       
         <script type="text/javascript" src="javascript/alerts.js"> </script>
+        <script type="text/javascript" src="javascript/formulaires.js"> </script>
         </head>
     <body>
         <header>
@@ -39,6 +40,10 @@ if(isset($vue)){
                         </form>
                     </li>
                     <li>
+                        <a id="menu_alerts"><img id="image_alert" src="<?php echo $image_alert ?>" alt="Alertes"/></a>
+                         
+                    </li>
+                    <li>
                         <a href='index.php?page=users&action=edit'> <img src="images/settings.png" alt="Réglages"/> </a>
                     </li>
                 </ul>
@@ -46,8 +51,9 @@ if(isset($vue)){
             <?php } ?>
         </header>
         
-
-       
+        <div id="alerts">
+            <ul id="alerts_list"><?php  require_once 'vue/alerts/print.php' ?></ul>
+        </div>
         
         <div id="content">
             
@@ -77,10 +83,8 @@ if(isset($vue)){
         <article>
             <?php require_once $vue; ?>
         </article>
-        
-            <div id="alerts"> <?php require_once 'controleur/alerts.php' ?></div>
             
-           
+       
             
         </div>
             

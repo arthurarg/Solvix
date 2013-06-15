@@ -9,8 +9,44 @@
 root { 
     display: block;
 }
-.alert{
-    border:1px solid black;
-    background-color: white;
+.alerts_item{
+    list-style-type: none;
+    margin: 0;
+    padding:3px;
+    border:solid #0084B4 1px;
+    border-top:0;
+    font-size: 12px;
+}
+.alerts_item p{
+    margin: 0;
+}
+.title{
+    font-weight: bold;
+    color:#0084B4;
+}
+
+.content{
+    
+    color:rgb(116, 116, 116);
+}
+.close{
+    right:0;
+    font-weight: bold;
+    position:absolute;
+}
+
+#alerts_list{
+    padding:0px;
+    margin: 0;
+}
+#alerts{
+    padding:0;
+    background-color: whitesmoke;
+    margin-left: 56%;
+    position: absolute;
+    width:15%;
+    top: 40px;
+    z-index: 2;
+    box-shadow: 2px 2px 2px black;
 }
 

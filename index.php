@@ -17,6 +17,8 @@
     //Charge l'utilisateur
     if(isset($_SESSION['id'])){
         $current_user=new User($_SESSION['id']);
+        if(!isset($_GET['page']) || $_GET['page']!="alerts")
+            require_once 'controleur/alerts.php';
     }
     
 //Caractères spéciaux échappés pour des raisons de securite
