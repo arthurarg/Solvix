@@ -23,10 +23,10 @@ body{
     font-family:sans-serif;
 }
 .button_home {
-    margin-top: 10px;
-    display: inline-block;
-    position: absolute;
-    right: 35px;
+    display:inline-block;
+    margin-top:10px;
+    position:absolute;
+    right: 10px;
 }
 button a {
     text-decoration: none;

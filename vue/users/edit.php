@@ -13,7 +13,7 @@
 </p>
 
 
-<form class='formulaire_edition' action="index.php?page=users&action=update" method="post">
+<form class='formulaire_edition' action="index.php?page=users&action=update" method="post" onsubmit='return valider_edit()'>
         <p class="password">Mot de passe : <input type="password" id="password" name="password" value="" /></p>
         <p class="new_password">Nouveau mot de passe : <input type="password" id="new_password" name="new_password" /></p>
         <p class="new_confirmation">Confirmation nouveau mot de passe : <input type="password" id="new_confirmation" name="new_confirmation" /></p>

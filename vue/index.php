@@ -58,7 +58,7 @@ if(isset($vue)){
         <div id="content">
             
             <?php if (isset($flash) && $flash!=null) {
-                echo("<div class = flash>" . $flash . "<span id=\"masquer\" > x</span></div>");
+                echo("<div class = flash>" . $flash . "<span id=\"masquer\" >x</span></div>");
                 $flash = null;
             }  ?>
             
