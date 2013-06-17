@@ -2,6 +2,7 @@ $(document).ready(function() {
     
     
 // -- Gestion update profil -- //
+    $(".formulaire_edition .intitule").hide();
     $(".formulaire_edition .password").hide();
     $(".formulaire_edition .new_password").hide();
     $(".formulaire_edition .new_confirmation").hide();
@@ -10,7 +11,8 @@ $(document).ready(function() {
     $(".formulaire_edition #submit").hide();
 
     
-    $(".infos_personnelles .modifier_password").click(function() {        
+    $(".infos_personnelles .modifier_password").click(function() {   
+        $(".formulaire_edition .intitule").show();        
         $(".formulaire_edition .password").show();
         $(".formulaire_edition .new_password").show();
         $(".formulaire_edition .new_confirmation").show();
@@ -20,6 +22,7 @@ $(document).ready(function() {
     });
     
     $(".infos_personnelles .modifier_iban").click(function() {
+        $(".formulaire_edition .intitule").show();        
         $(".formulaire_edition .password").show();
         $(".formulaire_edition .new_password").hide();
         $(".formulaire_edition .new_confirmation").hide();
@@ -28,7 +31,8 @@ $(document).ready(function() {
         $(".formulaire_edition #submit").show();
     });
         
-    $(".infos_personnelles .modifier_email").click(function() {                
+    $(".infos_personnelles .modifier_email").click(function() {   
+        $(".formulaire_edition .intitule").show();                
         $(".formulaire_edition .password").show();
         $(".formulaire_edition .new_password").hide();
         $(".formulaire_edition .new_confirmation").hide();

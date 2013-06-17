@@ -10,19 +10,21 @@ if (!isset($_SESSION['id'])) { ?>
     
 <div class ='formulaire_home'>
     <form class='formulaire_connection' action="index.php?page=sessions&action=create" method="post" onsubmit='return valider_login()'>
-        <p><label for="email">E-mail</label> : <input type="email" name="email" id="email" required="true"/></p>
-        <p><label for="password">Mot de passe</label> : <input type="password" name="password" id="password" required="true" /></p>
-        <p><input type="submit" value="Se connecter"></p>
-    </form>
+        <fieldset><legend> Se connecter </legend>
+        <input type="email" placeholder='Adresse e-mail...' name="email" id="email" required="true"/>
+        <input type="password" placeholder='Mot de passe...' name="password" id="password" required="true" />
+        <input type="submit" value="Se connecter">
+    </fieldset></form>
 
     <form class='formulaire_inscription' action="index.php?page=registration&action=new" method="post" onsubmit='return valider_inscription()'>
-        <p><label for="prenom">Prénom</label> : <input type="text" name="prenom" id="prenom" required="true"/></p>
-        <p><label for="nom">Nom</label> : <input type="text" name="nom" id="nom" required="true" /></p>
-        <p><label for="mail">E-mail</label> : <input type="email" name="mail" id="mail" required="true"/></p>
-        <p><label for="password">Mot de passe</label> : <input type="password" name="password" id="password" required="true"/></p>
-        <p><label for="confirmation">Confirmation</label> : <input type="password" name="confirmation" id="confirmation" required="true"/></p>
-        <p><input type="submit" value="S'inscrire"></p>
-    </form>
+        <fieldset><legend> S'inscrire </legend>
+        <input type="text" placeholder='Prenom...' name="prenom" id="prenom" required="true"/>
+        <input type="text" placeholder='Nom...' name="nom" id="nom" required="true" />
+        <input type="email" placeholder='E-mail...' name="mail" id="mail" required="true"/>
+        <input type="password" placeholder='Mot de passe...' name="password" id="password" required="true"/>
+        <input type="password" placeholder='Confirmation...' name="confirmation" id="confirmation" required="true"/>
+        <input type="submit" value="S'inscrire">
+    </fieldset></form>
 </div>
 
 <?php } 

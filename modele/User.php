@@ -15,7 +15,9 @@ class User {
     public $id;
     public $nom, $prenom;
     public $email, $iban;
-    public $estAmi;
+    public $estAmi, $last_connection;
+    
+    const KEY='jeu7!oQnep9&l';  //Utiliser pour renforcer sécurité mot de passe
     
     public function __construct($id) {
         global $current_user;        
@@ -25,6 +27,7 @@ class User {
             $this->estAmi = true;
         else
             $this->estAmi = false;
+        
     }
     
     public function getId(){
@@ -34,13 +37,15 @@ class User {
     private function getData(){
         global $bdd;
         
-        $rep=$bdd->query('SELECT * FROM users WHERE id='.$this->id);
+        $rep=$bdd->query("SELECT nom, prenom, email, IBAN, DATE_FORMAT(updated_at, '%d/%m/%y à %Hh%i') AS date
+            FROM users WHERE id=".$this->id);
         $data=$rep->fetch();
         if($data!=null){
             $this->nom=ucfirst($data['nom']);
             $this->prenom=ucfirst($data['prenom']);
             $this->email=$data['email'];
             $this->iban=$data['IBAN'];
+            $this->last_connect=$data['date'];
         }
     }
     
@@ -139,7 +144,7 @@ class User {
         global $bdd;
         
         $req=$bdd->prepare("UPDATE users SET password=? WHERE id=?");
-        $req->execute(array(sha1($pwd),$_SESSION['id']));
+        $req->execute(array(sha1($pwd.self::KEY),$_SESSION['id']));
         return;
     }
     
@@ -160,7 +165,7 @@ class User {
     public static function verifierMotdePasse($email,$password) {
         
         global $bdd;
-        $password = sha1($password);
+        $password = sha1($password.self::KEY);
        
         $req=$bdd->prepare("SELECT id FROM users WHERE email= ? AND password= ?");
         $req->execute( array($email, $password));
@@ -200,7 +205,7 @@ class User {
         global $bdd;
         
         $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW())");
-        return ($req->execute(array($mail,sha1($password),$nom,$prenom)));
+        return ($req->execute(array($mail,sha1($password.self::KEY),$nom,$prenom)));
     }
     
     public static function saveCrypted($prenom,$nom,$mail,$password,$crypted) {
@@ -208,11 +213,17 @@ class User {
         global $bdd;
         
         if($crypted!=true)
-            $password=sha1($password);
+            $password=sha1($password.self::KEY);
         
         $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW())");
         return ($req->execute(array($mail,$password,$nom,$prenom)));
     }
+    
+    public static function maj() {
+        global $bdd;
+        
+        $req=$bdd->prepare("UPDATE users SET updated_at=NOW() WHERE id=?");
+        $req->execute(array($_SESSION['id']));    }
     
     public static function rechercher($recherche){
         

@@ -14,6 +14,8 @@ if (isset($_SESSION['id'])) { ?>
     
     <p class="nom"><?php echo $user_showed->prenom.' '.$user_showed->nom ?></p>
     <p class="email"><?php echo $user_showed->email ?></p>
+    <p> Dernière connexion : <?php echo $user_showed->last_connect ?></p>
+    
     <button type='button' class='button_user_1'><a href="index.php?page=operations&action=new&type=deal&id=<?php echo $user_showed->id ?>"> Virement</a></button>
     <br/>
     <?php if ($user_showed->estAmi) { ?>

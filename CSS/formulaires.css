@@ -1,0 +1,31 @@
+/* 
+    Document   : formulaires
+    Created on : 14 juin 2013, 17:56:32
+    Author     : jean-maxime
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+label {
+  display:block;
+}
+input {
+    width: 200px;
+    margin: 7px;
+    display: block;
+    border-radius: 5px;
+}
+
+.formulaire_connection, .formulaire_inscription, .formulaire_edition, .formulaire_deal{
+    display: block;
+    width: 300px;
+    margin: 10px;
+}
+
+form #montant {
+    width: 40px;
+    display: inline-block;
+}

@@ -11,13 +11,13 @@ if(!isset($vue)){
 if(isset($_GET['type']) && $_GET['type']=="deal"){
         ?>
 
-<form action='index.php?page=operations&action=create&type=deal' method='POST'>
-    <ul>
-        <li><label for="receveur">Bénéficiaire</label> :
+<form class='formulaire_deal' action='index.php?page=operations&action=create&type=deal' method='POST'>
+   <fieldset><legend> Virement à un ami </legend>
+        <label for="receveur">Bénéficiaire :
         <?php
         if(isset($id)){
             Affichage::afficher_name($id);
-            echo '<input type="hidden" id="receveur" name="receveur" value="'.$id.'" />';
+            echo '</label><input type="hidden" id="receveur" name="receveur" value="'.$id.'" />';
         }
         elseif(isset($amis)){
             
@@ -40,12 +40,11 @@ if(isset($_GET['type']) && $_GET['type']=="deal"){
             return;
         }
         ?>
-        </li>
-        <li><label for="libelle">Libellé</label> : <input type="text" id="libelle" name="libelle"/></li>
-        <li><label for="montant">Montant</label> : <input type="number" id="montant" name="montant"/></li>
-        <li><input type="submit" value="Valider"</li>
-    </ul>
-    
+       
+        <input type="text" placeholder='Libellé...' id="libelle" name="libelle"/>
+        <input type="number" step='any' min='0' placeholder='0' id="montant" name="montant"/> €
+        <input type="submit" value="Valider">
+   </fieldset>
 </form>
         <?php
 }

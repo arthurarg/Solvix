@@ -28,6 +28,7 @@ footer{
     bottom:0;
     left:0;
     color:rgb(47,47, 47);
+    text-align: right;
 }
 
 body {
@@ -45,6 +46,7 @@ body {
     top: 6%;
     width: 80%;
     min-width: 800px;
+    min-height: 500px;
     z-index: 1;
 }
 

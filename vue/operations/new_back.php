@@ -10,13 +10,12 @@ if(!isset($vue)){
 }
 if(isset($_GET['type']) && $_GET['type']=="back"){
     ?>
-<form action='index.php?page=operations&action=create&type=back' method='POST'>
-    <ul>
-        <li><label for="libelle">Libellé</label> : <input type="text" id="libelle" name="libelle"/></li>
-        <li><label for="montant">Montant</label> : <input type="number" id="montant" name="montant"/></li>
-        <li><input type="submit" value="Valider"</li>
-    </ul>
-    
+<form class='formulaire_deal' action='index.php?page=operations&action=create&type=back' method='POST'>
+    <fieldset><legend> Retirer de l'argent </legend>
+    <input type="text" placeholder='Libellé...' id="libelle" name="libelle"/>
+    <input type="number" step='any' min='0' placeholder='0' id="montant" name="montant"/> €
+    <input type="submit" value="Valider">
+    </fieldset>
 </form>
 
         <?php
