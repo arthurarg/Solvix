@@ -38,8 +38,17 @@ Class Affichage {
         }
         echo("<table class='tableau_operations'>");
             echo("<tr><th> Emetteur </th><th> Bénéficiaire </th><th> Crédit </th><th>Débit</th><th> Libelle </th><th>Date</th></tr>");
+        $clair=true;
         foreach ($operations as $op) {
-            echo("<tr><td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
+            if($clair){
+                $aff_clair="clair";
+                $clair=false;
+            }
+            else{
+                $aff_clair="fonce";
+                $clair=true;
+            }
+            echo("<tr class=\"$aff_clair\"><td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
             if ($op->receveur != null)
                 echo("<td><a href='index.php?page=users&action=show&id=".$op->receveur->id ."'>". $op->receveur->prenom . " " . $op->receveur->nom . "</a></td>");
             else

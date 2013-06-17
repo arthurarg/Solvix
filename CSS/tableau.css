@@ -36,7 +36,7 @@ table {
     width: 100%;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid rgb(243,243,249);
 }
 th, td {
     padding: 5px;
@@ -50,4 +50,10 @@ th {
 table a {
     text-decoration: none;
     color: black;
+}
+.clair{
+    background-color:rgb(249,249,249);
+}
+.fonce{
+    background-color:white;
 }
