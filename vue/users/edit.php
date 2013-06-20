@@ -26,5 +26,5 @@
         </fieldset>
 </form>
 
-<span><a href="index.php?page=sessions&action=destroy">Déconnection</a></span>
+<span><a href="index.php?page=sessions&action=destroy">Déconnexion</a></span>
 
