@@ -90,7 +90,7 @@ class User {
         
         global $bdd;
         
-        $rep=$bdd->query('SELECT is_deal, montant, emetteur, receveur FROM operations WHERE emetteur='.$this->id.' OR receveur='.$this->id);
+        $rep=$bdd->query('SELECT is_deal, montant, emetteur, receveur FROM operations WHERE (emetteur='.$this->id.' OR receveur='.$this->id.') AND temporary=0');
         while($d=$rep->fetch()){
             if($d['is_deal']){
                 if($d['emetteur']==$this->id)
@@ -109,7 +109,7 @@ class User {
         global $bdd;
         $tab = array();
         
-        $req=$bdd->query('SELECT id FROM operations WHERE emetteur =' . $this->id .' OR receveur=' . $this->id . ' ORDER BY date DESC');
+        $req=$bdd->query('SELECT id FROM operations WHERE (emetteur =' . $this->id .' OR receveur=' . $this->id . ') AND temporary=0 ORDER BY date DESC');
 
         while(($op = $req->fetch()) != null) {
             $tab[$op['id']]=new Operation($op['id']);
@@ -122,7 +122,7 @@ class User {
         
         global $bdd;
         $tab = array();
-        $req=$bdd->query('SELECT id FROM operations WHERE emetteur =' . $this->id . ' OR receveur=' . $this->id .' ORDER BY date DESC LIMIT 0, 5');
+        $req=$bdd->query('SELECT id FROM operations WHERE (emetteur =' . $this->id . ' OR receveur=' . $this->id .') AND temporary=0 ORDER BY date DESC LIMIT 0, 5');
         while(($op = $req->fetch()) != null) {
             $tab[$op['id']] = new Operation($op['id']);
         }
@@ -133,7 +133,7 @@ class User {
         
         global $bdd;
         $tab = array();
-        $req=$bdd->query('SELECT id FROM operations WHERE (emetteur =' . $this->id . ' AND receveur=' . $user->id .') OR (emetteur =' . $user->id . ' AND receveur=' . $this->id .') ORDER BY date DESC LIMIT 0, 5');
+        $req=$bdd->query('SELECT id FROM operations WHERE (emetteur =' . $this->id . ' AND receveur=' . $user->id .' AND temporary=0 ) OR (emetteur =' . $user->id . ' AND receveur=' . $this->id .' AND temporary=0) ORDER BY date DESC LIMIT 0, 5');
         while(($op = $req->fetch()) != null) {
             $tab[$op['id']] = new Operation($op['id']);
         }

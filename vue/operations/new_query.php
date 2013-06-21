@@ -8,12 +8,12 @@ if(!isset($vue)){
     header("Location: index.php");
     return;
 }
-if(isset($_GET['type']) && $_GET['type']=="deal"){
+if(isset($_GET['type']) && $_GET['type']=="query"){
         ?>
 
-<form class='formulaire_deal' action='index.php?page=operations&action=create&type=deal' method='POST'>
-   <fieldset><legend> Virement à un ami </legend>
-        <label for="receveur">Bénéficiaire :</label>
+<form class='formulaire_deal' action='index.php?page=operations&action=create&type=query' method='POST'>
+   <fieldset><legend> Demander un virement </legend>
+        <label for="receveur">A :</label>
         <?php
         if(isset($id)){
             Affichage::afficher_name($id);
@@ -25,7 +25,7 @@ if(isset($_GET['type']) && $_GET['type']=="deal"){
             
             
             <select id="receveur" name="receveur">
-                <option value="-1">choisir un bénéficiaire</option>
+                <option value="-1">choisir un ami</option>
             
             <?php
             foreach ($amis as $ami)

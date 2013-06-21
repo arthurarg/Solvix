@@ -9,7 +9,7 @@
 root { 
     display: block;
 }
-.alerts_item{
+.alerts_item_close, .alerts_item{
     list-style-type: none;
     margin: 0;
     padding:3px;
@@ -17,7 +17,7 @@ root {
     border-top:0;
     font-size: 12px;
 }
-.alerts_item p{
+.alerts_item_close p, .alerts_item p{
     margin: 0;
 }
 .title{
@@ -28,6 +28,14 @@ root {
 .content{
     
     color:rgb(116, 116, 116);
+}
+
+.gras{
+    font-weight: bold;
+    
+}
+.content a{
+    color: #0084B4;
 }
 .close{
     right:0;

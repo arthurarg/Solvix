@@ -51,7 +51,35 @@ class Operation {
             ) );
         
         $user=new User($emetteur);
-        Alert::add($receveur, 'Virement de '.$user->prenom.' '.$user->nom, $user->prenom.' '.$user->nom.' vous a versé '.$montant.' euros');
+        Alert::add($receveur, 'Virement de '.$user->prenom.' '.$user->nom, $montant.' euros<br/>Motif : <i>'.$libelle.'</i>', true);
+    }
+    
+    public static function ask_deal($emetteur, $receveur, $montant, $libelle){
+        
+        global $bdd;
+        $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 1, :montant, :emetteur, :receveur, :libelle, NOW(), 1  )');
+        $req->execute( array(
+            'montant'=>$montant,
+            'emetteur'=>$emetteur,
+            'receveur'=>$receveur,
+            'libelle'=>$libelle,
+            ) );
+        
+        
+        $req=$bdd->prepare('SELECT id from operations WHERE montant=:montant AND emetteur=:emetteur AND receveur=:receveur AND temporary=1');
+        $rep=$req->execute( array(
+            'montant'=>$montant,
+            'emetteur'=>$emetteur,
+            'receveur'=>$receveur,
+            ) );
+        
+        $op=$req->fetch();
+        $id=$op['id'];
+        
+        $user=new User($receveur);
+        Alert::add($emetteur, 'Virement en attente', '<span class="gras">'.$montant.' euros</span> à '.$user->prenom.' '.$user->nom.'.<br/>
+            <span class="gras">Motif :</span> <i>'.$libelle.'</i><br/>
+            <a class="choix" value="index.php?page=operations&action=validate&asw=y&id='.$id.'">Accepter</a> - <a class="choix" value="index.php?page=operations&action=validate&asw=n&id='.$id.'">Refuser</a>', false);
     }
     
     //Recharge d'un compte ou retrait d'argent
@@ -65,6 +93,43 @@ class Operation {
             'emetteur'=>$emetteur,
             'libelle'=>$libelle,
             ) );
+    }
+    
+    public static function validate($asw, $id, User $emetteur){
+        
+        global $bdd;
+        
+        $solde=$emetteur->getSolde();
+        $req=$bdd->prepare('SELECT * FROM operations WHERE id=? AND emetteur=? AND temporary=1');
+            $req->execute( array(
+                $id,
+                $emetteur->id,
+            ) );
+            $op=$req->fetch();
+            
+            if($op==NULL)
+                return false;
+            
+        if($asw=="n"){
+            $req=$bdd->prepare('DELETE FROM operations WHERE id=? AND emetteur=? AND temporary=1');
+            $req->execute( array(
+                $id,
+                $emetteur->id,
+            ) );
+            return true;
+        }
+        elseif($asw=="y"){
+            if($solde<$op)
+                return false;
+            $req=$bdd->prepare('UPDATE operations SET temporary=0 WHERE id=? AND emetteur=? AND temporary=1');
+            $req->execute( array(
+                $id,
+                $emetteur->id,
+            ) );
+            return true;
+        }
+        return false;
+        
     }
 
 }

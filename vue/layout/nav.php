@@ -29,7 +29,8 @@ if(isset($vue)){
             <input placeholder=' Libelle...' size='20' type='text' id='libelle' name="libelle"> </input>
            <input type="submit" id='valider' value="Donner">
            </p></form>
-    <p> <a href='index.php?page=operations&action=new&type=load'> Recharger mon compte </a><br/>
+    <p><a href='index.php?page=operations&action=new&type=query'> Demander un virement </a><br/>
+        <a href='index.php?page=operations&action=new&type=load'> Recharger mon compte </a><br/>
     <a href='index.php?page=operations&action=new&type=back'> Retirer de l'argent </a></p>
     </div>
         

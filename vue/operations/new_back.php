@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 if(!isset($vue)){
-    header("Location: ../index.php");
+    header("Location: index.php");
     return;
 }
 if(isset($_GET['type']) && $_GET['type']=="back"){
@@ -21,7 +21,7 @@ if(isset($_GET['type']) && $_GET['type']=="back"){
         <?php
 }
 else{
-    header("Location: ../index.php");
+    header("Location: index.php");
     return;
 }
 ?>
