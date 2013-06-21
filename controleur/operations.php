@@ -60,7 +60,7 @@ switch ($_GET['action']) {
             switch($_GET['type']){
                 case "deal":
                     $solde=$current_user->getSolde();
-                    if(Saisies::isDealSafe() && ( $current_user->isFriend($_POST['receveur']) || $_POST['receveur']==-1 ) ){
+                    if(Saisies::isDealSafe() && ((User::isUser($_POST['receveur']) &&$current_user->isFriend($_POST['receveur'])) || $_POST['receveur']==-1 ) ){
                         if($solde<$_POST['montant']){
                             $flash="Provisions insuffisantes";
                             

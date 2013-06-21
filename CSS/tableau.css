@@ -22,7 +22,7 @@
     color:#0084B4;
     margin-bottom: 2px;
 }
-.user-box .user-action {
+.user-box .user-action, .user-box .admin-lock {
     position: absolute;
     right: 10px;
     text-decoration: none;

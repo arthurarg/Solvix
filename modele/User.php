@@ -15,7 +15,7 @@ class User {
     public $id;
     public $nom, $prenom;
     public $email, $iban;
-    public $estAmi, $last_connection;
+    public $estAmi, $last_connection, $locked;
     
     const KEY='jeu7!oQnep9&l';  //Utiliser pour renforcer sécurité mot de passe
     
@@ -23,11 +23,10 @@ class User {
         global $current_user;        
         $this->id=$id;
         $this->getData();
-        if ($this->id==$_SESSION['id'] || $current_user->isFriend($this->id))
+        if ($this->id==$_SESSION['id'] || (isset($current_user) && $current_user->isFriend($this->id)))
             $this->estAmi = true;
         else
             $this->estAmi = false;
-        
     }
     
     public function getId(){
@@ -37,7 +36,7 @@ class User {
     private function getData(){
         global $bdd;
         
-        $rep=$bdd->query("SELECT nom, prenom, email, IBAN, DATE_FORMAT(updated_at, '%d/%m/%y à %Hh%i') AS date
+        $rep=$bdd->query("SELECT nom, prenom, email, IBAN, DATE_FORMAT(updated_at, '%d/%m/%y à %Hh%i') AS date, locked
             FROM users WHERE id=".$this->id);
         $data=$rep->fetch();
         if($data!=null){
@@ -46,6 +45,7 @@ class User {
             $this->email=$data['email'];
             $this->iban=$data['IBAN'];
             $this->last_connect=$data['date'];
+            $this->locked=$data['locked'];
         }
     }
     
@@ -68,7 +68,9 @@ class User {
         
         $rep=$bdd->query('SELECT id2 FROM relationships WHERE id1='.$this->id);
         while(($ami = $rep->fetch()) != null) {
-            $tab[$ami['id2']]=new User($ami['id2']);
+            $user = new User($ami['id2']);
+            if (!$user->locked)
+              $tab[$ami['id2']]= $user;
         }
         return $tab;
     }
@@ -77,9 +79,11 @@ class User {
         global $bdd;
         $tab=array();
         //Faire un tableau d'amis et modifier fonction affichage
-        $rep=$bdd->query('SELECT id2 FROM relationships WHERE id1='.$this->id);
+        $rep=$bdd->query('SELECT id2 FROM relationships WHERE id1='.$this->id. ' LIMIT 0,5');
         while(($ami = $rep->fetch()) != null) {
-            $tab[$ami['id2']]=new User($ami['id2']);
+            $user = new User($ami['id2']);
+            if (!$user->locked)
+              $tab[$ami['id2']]= $user;
         }
         return $tab;
     }
@@ -115,7 +119,6 @@ class User {
             $tab[$op['id']]=new Operation($op['id']);
         }
         return $tab;
-        return $req;
     }
     
     public function getLastOperations() {
@@ -191,7 +194,7 @@ class User {
     public static function isUser($id) {
         global $bdd;
         
-        $req=$bdd->prepare("SELECT id FROM users WHERE id=?");
+        $req=$bdd->prepare("SELECT id FROM users WHERE id=? AND locked=0");
         $req->execute(array($id));
         
         if (($req->fetch()) != null)

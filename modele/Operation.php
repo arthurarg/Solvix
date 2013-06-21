@@ -22,7 +22,7 @@ class Operation {
 
         global $bdd;
         $req=$bdd->prepare("SELECT id, emetteur, receveur, montant, libelle, 
-            DATE_FORMAT(date, '%d/%m/%Y') AS date FROM operations WHERE id=?");
+            DATE_FORMAT(date, '%d/%m/%y') AS date FROM operations WHERE id=?");
         $req->execute(array($id));
         $op = $req->fetch();
         

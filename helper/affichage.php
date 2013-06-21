@@ -12,13 +12,15 @@ Class Affichage {
         }
         
         foreach ($users as $user) {
-            echo("<div class='user-box'>
-                <a class='user-name' href='index.php?page=users&action=show&id=$user->id'>". $user->prenom . " " . $user->nom . "</a></td>");
-            if (!$user->estAmi)
-                echo("<a class='user-action' href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a>");
-            else if($user->id!=$current_user->id)
-                echo("<a class ='user-action' href='index.php?page=operations&action=new&type=deal&id=" . $user->id ."'>Virement</a>");
-            echo("</div>");
+            if (!$user->locked) {
+                echo("<div class='user-box'>
+                    <a class='user-name' href='index.php?page=users&action=show&id=$user->id'>". $user->prenom . " " . $user->nom . "</a></td>");
+                if (!$user->estAmi)
+                    echo("<a class='user-action' href='index.php?page=relationships&action=create&id=" . $user->id ."'>Ajouter</a>");
+                else if($user->id!=$current_user->id)
+                    echo("<a class ='user-action' href='index.php?page=operations&action=new&type=deal&id=" . $user->id ."'>Virement</a>");
+                echo("</div>");
+            }
         }
     }
     
@@ -37,7 +39,7 @@ Class Affichage {
             return;
         }
         echo("<table class='tableau_operations'>");
-            echo("<tr><th> Emetteur </th><th> Bénéficiaire </th><th> Crédit </th><th>Débit</th><th> Libelle </th><th>Date</th></tr>");
+            echo("<tr><th> De/A </th><th>Montant</th><th> Libelle </th><th>Date</th></tr>");
         $clair=true;
         foreach ($operations as $op) {
             if($clair){
@@ -48,16 +50,21 @@ Class Affichage {
                 $aff_clair="fonce";
                 $clair=true;
             }
-            echo("<tr class=\"$aff_clair\"><td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
-            if ($op->receveur != null)
+            echo("<tr class=\"$aff_clair\">");
+            
+            
+            if ($op->emetteur->id != $current_user->id) 
+                echo("<td><a href='index.php?page=users&action=show&id=".$op->emetteur->id ."'>". $op->emetteur->prenom . " " . $op->emetteur->nom . "</a></td>");
+            else if ($op->receveur != null)
                 echo("<td><a href='index.php?page=users&action=show&id=".$op->receveur->id ."'>". $op->receveur->prenom . " " . $op->receveur->nom . "</a></td>");
             else
                 echo("<td> Retrait/Recharge </td>");
             
+            
             if ($op->emetteur->id==$current_user->id && ($op->receveur!=null ||$op->montant<0 ))
-                echo("<td></td><td>". abs($op->montant) . "</td>");
+                echo("<td>". - abs($op->montant) . "</td>");
             else
-                echo("<td>". abs($op->montant) . "</td><td></td>");
+                echo("<td>". $op->montant . "</td>");
                 
             
             echo("<td>". $op->libelle . "</td><td>". $op->date . "</td></tr>");
