@@ -6,11 +6,14 @@
  */
 class Alert{
     
-    public static function add($id, $title, $content){
+    public static function add($id, $title, $content, $hide){
         
         global $bdd;
         
-        $req=$bdd->prepare('INSERT INTO alerts VALUES( \'\', :user, :title, :content, 1)');
+        if($hide)
+            $req=$bdd->prepare('INSERT INTO alerts VALUES( \'\', :user, :title, :content, 1, 1)');
+        else
+            $req=$bdd->prepare('INSERT INTO alerts VALUES( \'\', :user, :title, :content, 1, 0)');
         
         $req->execute( array(
             'user'=>$id,
