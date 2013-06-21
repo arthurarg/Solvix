@@ -18,8 +18,8 @@ $(document).ready(function(){
        }
    });
    
-   $("#masquer").click(function(){
-       $(".flash").hide();
+   $("#flash").click(function(){
+       $("#flash").hide();
    });
    
    $(".confirmation").click(function(){

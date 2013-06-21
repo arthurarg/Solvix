@@ -54,7 +54,7 @@ root {
     position: absolute;
     width:15%;
     top: 40px;
-    z-index: 2;
+    z-index: 3;
     box-shadow: 2px 2px 2px black;
 }
 

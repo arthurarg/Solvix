@@ -55,14 +55,12 @@ if(isset($vue)){
         <div id="alerts">
             <ul id="alerts_list"><?php  require_once 'vue/alerts/print.php' ?></ul>
         </div>
-        
         <div id="content">
-            
-            <?php if (isset($flash) && $flash!=null) {
-                echo("<div class = flash>" . $flash . "<span id=\"masquer\" >x</span></div>");
+        <?php if (isset($flash) && $flash!=null) {
+                echo("<div id = \"flash\"><p>" . $flash . "</p><p id=\"masquer\" >x</p></div>");
                 $flash = null;
             }  ?>
-            
+        
             <?php
             
             if(isset($_SESSION['id'])){

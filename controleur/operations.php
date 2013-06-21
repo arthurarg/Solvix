@@ -13,7 +13,8 @@ switch ($_GET['action']) {
         if (!isset($_GET['asw']) || (($_GET['asw']!="y" AND $_GET['asw']!="n")) || !isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id']<0) {
             header("Location: index.php");
         }
-        if(Operation::validate($_GET['asw'], $_GET['id'], $current_user)){
+        $resultat=Operation::validate($_GET['asw'], $_GET['id'], $current_user);
+        if($resultat=="true"){
             if($_GET['asw']=="y")
                 $flash="Virement effectué";
 
@@ -24,7 +25,7 @@ switch ($_GET['action']) {
         }
         else{
             $redirection=true;
-            $flash="Opération impossible";
+            $flash=$resultat;
             require_once 'controleur/staticpages.php';
             return;
         }

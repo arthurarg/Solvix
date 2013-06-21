@@ -108,7 +108,7 @@ class Operation {
             $op=$req->fetch();
             
             if($op==NULL)
-                return false;
+                return "Opération impossible";
             
         if($asw=="n"){
             $req=$bdd->prepare('DELETE FROM operations WHERE id=? AND emetteur=? AND temporary=1');
@@ -116,19 +116,19 @@ class Operation {
                 $id,
                 $emetteur->id,
             ) );
-            return true;
+            return "true";
         }
         elseif($asw=="y"){
-            if($solde<$op)
-                return false;
+            if($solde<$op["montant"])
+                return "Solde insuffisant";
             $req=$bdd->prepare('UPDATE operations SET temporary=0 WHERE id=? AND emetteur=? AND temporary=1');
             $req->execute( array(
                 $id,
                 $emetteur->id,
             ) );
-            return true;
+            return "true";
         }
-        return false;
+        return "Opération impossible";
         
     }
 
