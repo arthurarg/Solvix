@@ -40,6 +40,7 @@
       public static function isDealSafe() {
           return (!empty($_POST['montant']) 
                   && !empty($_POST['libelle']) 
+                  && strlen($_POST['libelle'])<= 50
                   && !empty($_POST['receveur'])
                   && $_POST['montant'] > 0
                   && (int)$_POST['receveur']!=0
@@ -50,6 +51,7 @@
       public static function isTransfert() { // y'a pas de t à transfer en anglais !!!
           return (!empty($_POST['montant']) 
                   && !empty($_POST['libelle'])
+                  && strlen($_POST['libelle'])<= 50
                   && (int)($_POST['montant']) != 0
                   && $_POST['montant']>0);
       }

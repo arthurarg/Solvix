@@ -12,7 +12,14 @@ if(isset($vue)){
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="CSS/structure.css" type="text/css" />
+        <title> SolviX : réglez vos dettes !</title>
+        
+        <?php if (isset($current_user)) {
+            echo('<link rel="stylesheet" href="CSS/structure.css" type="text/css" />');
+        } else {
+            echo('<link rel="stylesheet" href="CSS/structure_without_nav.css" type="text/css" />');
+        } ?>
+        
         <link rel="stylesheet" href="CSS/nav.css" type="text/css" />
         <link rel="stylesheet" href="CSS/content.css" type="text/css" />
         <link rel="stylesheet" href="CSS/tableau.css" type="text/css" />
@@ -27,7 +34,12 @@ if(isset($vue)){
         </head>
     <body>
         <header>
-            <?php if (isset($current_user)) { ?>
+            <div id='logo'>
+                <img src='images/logo.png' alt:logo>
+                <p> Solvix</p>
+            </div>
+            
+            <?php if (isset($current_user)) { ?>              
                 <div id="barreheader">
                 <ul id="barregauche">
                     <li> <a href='index.php'> Accueil</a> </li>

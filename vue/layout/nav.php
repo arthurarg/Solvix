@@ -26,7 +26,7 @@ if(isset($vue)){
                     echo ("<option value='" . $user->id ."'>" . $user->prenom . " " . $user->nom . "</option>");
             }?></select>
             <span class='montant'><input type='number' step="any" min="0" placeholder='0' size='3' id='montant' name="montant"> </input> € </span><br/>
-            <input placeholder=' Libelle...' size='20' type='text' id='libelle' name="libelle"> </input>
+            <input placeholder=' Libelle...' size='20' type='text' maxlength='50' id='libelle' name="libelle"> </input>
            <input type="submit" id='valider' value="Donner">
            </p></form>
     <p><a href='index.php?page=operations&action=new&type=query'> Demander un virement </a><br/>

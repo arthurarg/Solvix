@@ -35,6 +35,9 @@ button a {
 button a:hover {
     text-decoration: none;
 }
+button:hover {
+    cursor: pointer;
+}
 
 .quelques_amis, .dernieres_operations {
     margin-bottom: 50px;

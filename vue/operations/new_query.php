@@ -41,7 +41,7 @@ if(isset($_GET['type']) && $_GET['type']=="query"){
         }
         ?>
        
-        <input type="text" placeholder='Libellé...' id="libelle" name="libelle"/>
+        <input type="text"  maxlength='50' placeholder='Libellé...' id="libelle" name="libelle"/>
         <input type="number" step='any' min='0' placeholder='0' id="montant" name="montant"/> €
         <input type="submit" value="Valider">
    </fieldset>

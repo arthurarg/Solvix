@@ -4,8 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-     $req=$bdd->prepare("SELECT id, emetteur, receveur, montant, libelle, 
-         DATE_FORMAT(date, '%d/%m/%y') AS date FROM operations");
+     $req=$bdd->prepare("SELECT id FROM operations ORDER BY date DESC");
      $req->execute();
      while(($op = $req->fetch()) != null) {
         $operations[$op['id']]=new Operation($op['id']);
@@ -17,7 +16,7 @@
         return;
     }
     echo("<table class='tableau_operations'>");
-        echo("<tr><th>Emetteur</th><th>Receveur</th><th>Montant</th><th> Libelle </th><th>Date</th><th>Suppr.</th></tr>");
+        echo("<tr><th>Emetteur</th><th>Receveur</th><th>Montant</th><th> Libelle </th><th>Date</th><th>Del </th></tr>");
     $clair=true;
     foreach ($operations as $op) {
         if($clair){
@@ -42,7 +41,7 @@
         echo("<td class=montant value=$op->montant>". $op->montant . "</td>");
 
 
-        echo("<td>". $op->libelle . "</td><td>". $op->date . "</td><td><span class='admin-del' value=" .$op->id . ">Del</td></tr>");
+        echo("<td>". $op->libelle . "</td><td>". $op->date . "</td><td><span class='admin-del' value=" .$op->id . "> <img src=../images/delete.png></span></td></tr>");
     }
     echo("</table>");
 

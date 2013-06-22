@@ -27,6 +27,9 @@
     right: 10px;
     text-decoration: none;
 }
+.user-box .admin-lock:hover, .admin-del:hover {
+    cursor: pointer;
+}
 
 
 /* Affichage opérations */

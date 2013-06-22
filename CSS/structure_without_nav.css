@@ -1,10 +1,11 @@
 /* 
-    Document   : style
-    Created on : 20 mai 2013, 09:33:02
+    Document   : structure_without_nav
+    Created on : 22 juin 2013, 10:29:30
     Author     : jean-maxime
     Description:
         Purpose of the stylesheet follows.
 */
+
 
 header {
     width : 100%;
@@ -46,17 +47,17 @@ body {
     top: 6%;
     width: 80%;
     min-width: 800px;
-    min-height: 500px;
+    min-height: 400px;
     z-index: 1;
 }
 
-article, nav {
+article {
     display: inline-block;
     vertical-align:top;
     margin:1%;
 }
 
-article, nav .module {
+article {
     position: relative;
     display:inline-block;
     border-radius:8px;
@@ -67,16 +68,10 @@ article, nav .module {
     padding:9px;
 }
 
-nav {
-    width:25%;
-}
-nav .module {
-    width: 90%;
-    margin-bottom: 15px;
-}
 
 article{
-    width:68%;
+    margin-left: 30%;
+    width:350px;
 }
 
 /* Gestion du header */

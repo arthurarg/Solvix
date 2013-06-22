@@ -44,7 +44,7 @@ class Operation {
         global $bdd;
         $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 1, :montant, :emetteur, :receveur, :libelle, NOW(), 0  )');
         $req->execute( array(
-            'montant'=>$montant,
+            'montant'=>round($montant,2),
             'emetteur'=>$emetteur,
             'receveur'=>$receveur,
             'libelle'=>$libelle,
@@ -59,7 +59,7 @@ class Operation {
         global $bdd;
         $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 1, :montant, :emetteur, :receveur, :libelle, NOW(), 1  )');
         $req->execute( array(
-            'montant'=>$montant,
+            'montant'=>round($montant,2),
             'emetteur'=>$emetteur,
             'receveur'=>$receveur,
             'libelle'=>$libelle,
@@ -68,7 +68,7 @@ class Operation {
         
         $req=$bdd->prepare('SELECT id from operations WHERE montant=:montant AND emetteur=:emetteur AND receveur=:receveur AND temporary=1');
         $rep=$req->execute( array(
-            'montant'=>$montant,
+            'montant'=>round($montant,2),
             'emetteur'=>$emetteur,
             'receveur'=>$receveur,
             ) );
@@ -89,7 +89,7 @@ class Operation {
         
         $req=$bdd->prepare('INSERT INTO operations VALUES( \'\', 0, :montant, :emetteur, NULL, :libelle, NOW(), 0  )');
         $req->execute( array(
-            'montant'=>$montant,
+            'montant'=>round($montant,2),
             'emetteur'=>$emetteur,
             'libelle'=>$libelle,
             ) );
@@ -119,7 +119,7 @@ class Operation {
             return "true";
         }
         elseif($asw=="y"){
-            if($solde<$op["montant"])
+            if($solde<round($op["montant"],2))
                 return "Solde insuffisant";
             $req=$bdd->prepare('UPDATE operations SET temporary=0 WHERE id=? AND emetteur=? AND temporary=1');
             $req->execute( array(

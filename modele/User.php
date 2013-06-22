@@ -170,7 +170,7 @@ class User {
         global $bdd;
         $password = sha1($password.self::KEY);
        
-        $req=$bdd->prepare("SELECT id FROM users WHERE email= ? AND password= ?");
+        $req=$bdd->prepare("SELECT id FROM users WHERE email= ? AND password= ? AND locked=0");
         $req->execute( array($email, $password));
         $donnees = $req->fetch();
 

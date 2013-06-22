@@ -32,7 +32,19 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="../CSS/structure.css" type="text/css" />
+        <title> SolviX : réglez vos dettes ! </title>
+  
+        <link rel="stylesheet" href="../CSS/structure_without_nav.css" type="text/css" />
+        <?php if(isset($_SESSION['admin']) && $_SESSION['admin']) { ?>
+        <style type="text/css">
+            article {
+              margin-left: 10px;
+              width: 90%;
+            }
+        </style>
+        <?php } ?>
+
+
         <link rel="stylesheet" href="../CSS/nav.css" type="text/css" />
         <link rel="stylesheet" href="../CSS/content.css" type="text/css" />
         <link rel="stylesheet" href="../CSS/tableau.css" type="text/css" />
@@ -49,16 +61,23 @@
     <body>
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin']) { ?>
         <header>
+                <div id='logo'>
+                    <img src='../images/logo.png' alt:logo>
+                    <p> Solvix</p>
+                </div>
                 <div id="barreheader">
-                <ul id="barregauche">
+                <ul>
                     <li> <a href='index.php?action=index_users'>Utilisateurs</a> </li>
                     <li> <a href='index.php?action=index_operations'>Opérations</a> </li>
+                </ul>
+                <ul>
                     <li> <a href='index.php?action=disconnect'>Se déconnecter</a> </li>
                 </ul>
                 </div>
         </header>
         
         <div id="content">
+            
             
             <?php if (isset($flash) && $flash!=null) {
                 echo("<div class = flash>" . $flash . "<span id=\"masquer\" >x</span></div>");
@@ -80,7 +99,12 @@
         </div>
         <?php }
            else { ?>
-        <header></header>
+        <header>            
+            <div id='logo'>
+                <img src='../images/logo.png' alt:logo>
+                <p> Solvix</p>
+            </div>
+        </header>
         <div id="content">
             <article>
                 <form class='formulaire_connection' method="post">
