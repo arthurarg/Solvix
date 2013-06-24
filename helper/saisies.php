@@ -15,7 +15,7 @@
   class Saisies {
       
       public static function isName($string) {
-          return preg_match("#^[a-z-]+$#",$string);
+          return preg_match("#^[A-Za-z-]+$#",$string);
       }
       public static function isMail($string) {
           return preg_match("#^[a-z0-9-_.]+@[a-z]{2,}\.[a-z]{2,4}$#",$string);

@@ -4,12 +4,12 @@
         echo("Nom : ". $current_user->nom . '<br/>');
         echo("Dernière connexion : " . $current_user->last_connect . '<br/>');
         echo("<button class='modifier_password' type='button'> Modifier mot de passe </button> <br/><br/>");
-        echo("Email : " .$current_user->email. "<button class='modifier_email' type='button'> Modifier </button><br/>");
+        echo("Email : " .$current_user->email. "<br/><button class='modifier_email' type='button'> Modifier </button><br/>");
         if (!empty($current_user->iban))
             echo('IBAN :' . $current_user->iban);
         else
             echo('Aucun iban rattaché à ce compte ');
-        echo("<button class='modifier_iban' type='button'>Modifier</button> <br/><br/>");
+        echo("<br/><button class='modifier_iban' type='button'>Modifier</button> <br/><br/>");
     ?>
     
 </p>

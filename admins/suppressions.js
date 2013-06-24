@@ -25,7 +25,7 @@ $(document).ready(function(){
                     success : function(data) {$var = data;},
                     async: false
         });
-        if (confirm($var + "\n Etes-vous sur ?")) {
+        if (confirm($var + " Etes-vous sur ?")) {
             $.ajax({
                         method : "POST" ,
                         url : "del.php",

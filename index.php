@@ -23,11 +23,12 @@
         require_once 'controleur/alerts.php';
     
 //Caractères spéciaux échappés pour des raisons de securite
-    foreach ($_GET as $var)
-        $var = strtolower(htmlspecialchars ($var));
+    foreach ($_GET as $i => $value)
+        $_GET[$i] = strtolower(htmlspecialchars($_GET[$i]));
     
-    foreach ($_POST as $var)
-        $var = strtolower(htmlspecialchars ($var));
+    foreach ($_POST as $i => $value)
+        $_POST[$i] = strtolower(htmlspecialchars($_POST[$i]));
+ 
  
 
 //Traitement des pages (tableau xml)

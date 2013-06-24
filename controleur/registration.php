@@ -14,7 +14,7 @@ switch ($_GET['action']) {
             //Sauvegarde dans la bdd
             $code=Registration::newRegistration($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['password']);
             $id=Registration::exists($_POST['mail']);
-            // envoyer le maile
+            // envoyer le mail
             header("Location: helper/messages.php?code=$code&id=$id");
         }
         else{
