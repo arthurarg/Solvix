@@ -57,4 +57,6 @@ root {
     z-index: 3;
     box-shadow: 2px 2px 2px black;
 }
-
+#menu_alerts:hover{
+    cursor:pointer;
+}
