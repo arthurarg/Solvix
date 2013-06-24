@@ -10,8 +10,14 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
     
     case "validate":
-        if (!isset($_GET['asw']) || (($_GET['asw']!="y" AND $_GET['asw']!="n")) || !isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id']<0) {
+        if (!isset($_GET['asw']) || (($_GET['asw']!="y" AND $_GET['asw']!="n")) || !isset($_GET['id']) || !is_numeric($_GET['id']) || $_GET['id']<0 || !isset($_GET['rec']) || !is_numeric($_GET['rec']) || $_GET['rec']<0) {
             header("Location: index.php");
+        }
+        if(! $current_user->isFriend($_GET['rec']) ){
+            $redirection=true;
+            $flash="Veuillez ajouter cette personne à vos amis";
+            require_once 'controleur/staticpages.php';
+            return;
         }
         $resultat=Operation::validate($_GET['asw'], $_GET['id'], $current_user);
         if($resultat=="true"){
@@ -102,7 +108,7 @@ switch ($_GET['action']) {
             switch($_GET['type']){
                 case "deal":
                     $solde=$current_user->getSolde();
-                    if(Saisies::isDealSafe() && ((User::isUser($_POST['receveur']) &&$current_user->isFriend($_POST['receveur'])) || $_POST['receveur']==-1 ) ){
+                    if(Saisies::isDealSafe() && ((User::isUser($_POST['receveur']) && $current_user->isFriend($_POST['receveur'])) || $_POST['receveur']==-1 ) ){
                         if($solde<$_POST['montant']){
                             $flash="Provisions insuffisantes";
                             
@@ -140,7 +146,7 @@ switch ($_GET['action']) {
                  case "query":
                      /* attention ici $_POST['receveur'] correspond à l'emetteur */
                      $emetteur=new User($_POST['receveur']);
-                    if(Saisies::isDealSafe() && ($current_user->isFriend($emetteur->id) && $emetteur->isFriend($current_user->id) || $_POST['receveur']==-1 ) ){
+                    if(Saisies::isDealSafe() && ($current_user->isFriend($emetteur->id) || $_POST['receveur']==-1 ) ){
                         if($_POST['receveur']==-1){
                             $flash="Veuillez choisir quelqu'un";
                             

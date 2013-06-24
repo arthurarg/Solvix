@@ -79,7 +79,7 @@ class Operation {
         $user=new User($receveur);
         Alert::add($emetteur, 'Virement en attente', '<span class="gras">'.$montant.' euros</span> à '.$user->prenom.' '.$user->nom.'.<br/>
             <span class="gras">Motif :</span> <i>'.$libelle.'</i><br/>
-            <a class="choix" value="index.php?page=operations&action=validate&asw=y&id='.$id.'">Accepter</a> - <a class="choix" value="index.php?page=operations&action=validate&asw=n&id='.$id.'">Refuser</a>', false);
+            <a class="choix" value="index.php?page=operations&action=validate&asw=y&id='.$id.'&rec='.$receveur.'">Accepter</a> - <a class="choix" value="index.php?page=operations&action=validate&asw=n&id='.$id.'">Refuser</a>', false);
     }
     
     //Recharge d'un compte ou retrait d'argent
