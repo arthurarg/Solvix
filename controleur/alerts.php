@@ -1,9 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 if(isset($_GET['da']) && isset($_GET['page']) && $_GET['page']=="alerts"){
     if($_GET['da']>0 && is_numeric($_GET['da'])){

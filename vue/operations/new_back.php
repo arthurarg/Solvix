@@ -9,6 +9,10 @@ if(!isset($vue)){
     return;
 }
 if(isset($_GET['type']) && $_GET['type']=="back"){
+    if (empty($current_user->iban)) {
+        echo("<p> Pour retirer de l'argent, 
+            vous devez associer un <a href=index.php?page=users&action=edit> IBAN </a> à votre compte </p>");
+    }
     ?>
 <form class='formulaire_deal' action='index.php?page=operations&action=create&type=back' method='POST'>
     <fieldset><legend> Retirer de l'argent </legend>
