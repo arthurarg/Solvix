@@ -91,7 +91,7 @@ $(document).ready(function() {
 // -- Gestion Inscription -- //
     function valider_inscription() {
         var regex_mail = /^[A-Za-z0-9-_.]+@[A-Za-z]{2,}\.[A-Za-z]{2,4}$/;
-        var regex_name = /^[A-Za-z-]+$/;
+        var regex_name = /^[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ-\s]+$/;
         var bol= true;
 
         if (!regex_name.test($(".formulaire_inscription #nom").val())) {

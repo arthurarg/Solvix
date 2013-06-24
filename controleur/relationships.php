@@ -1,7 +1,5 @@
 <?php
 
-// RESTful possibles : index, show, new, create, edit, update, destroy, 
-// RESTful utilise : create, destroy, index
 
 if (!isset($_GET['action'])) {
     header("Location : index.php");

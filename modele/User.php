@@ -211,7 +211,7 @@ class User {
         return ($req->execute(array($mail,sha1($password.self::KEY),$nom,$prenom)));
     }
     
-    public static function saveCrypted($prenom,$nom,$mail,$password,$crypted) {
+    public static function saveCrypted($nom,$prenom,$mail,$password,$crypted) {
         
         global $bdd;
         
@@ -232,9 +232,9 @@ class User {
         
         global $bdd;
         
-        $recherche=  htmlspecialchars($recherche);
+        $recherche= htmlspecialchars($recherche);
         
-        if(strlen($recherche)==0)
+        if(strlen(str_replace(' ','',$recherche))==0)
             return 0;
         
         $mots=  preg_split("# #", $recherche);

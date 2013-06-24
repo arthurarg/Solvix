@@ -25,13 +25,17 @@ if (isset($_SESSION['id'])) { ?>
     <div class="dernieres_operations">
         <p> Dernieres operations en commun </p>
         <?php Affichage::afficher_operations($taboperations);?>
-        <button type='button' class='button_home'><a href='index.php?page=operations&action=index'> Voir toutes mes opérations </a></button>
+        <button type='button' class='button_home' onclick="location.replace('index.php?page=operationss&action=index')">
+            Voir toutes mes opérations
+        </button>
     </div>
 
     <div class="quelques_amis">
         <p> Amis de cette personne </p>
         <?php Affichage::afficher_users($tabamis);?>
-        <button type='button' class='button_home'><a href='index.php?page=users&action=index'> Voir tous mes amis </a></button>
+        <button type='button' class='button_home' onclick="location.replace('index.php?page=users&action=index')">
+            Voir tous mes amis
+        </button>
     </div>
     <?php
 }

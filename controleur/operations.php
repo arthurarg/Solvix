@@ -1,7 +1,5 @@
 <?php
 
-// RESTful possibles : index, show, new, create, edit, update, destroy, 
-// RESTful utilise : index, create
 
 if (!isset($_GET['action'])) {
     header("Location: index.php");
@@ -181,7 +179,7 @@ switch ($_GET['action']) {
                     
                 case "back":
                     
-                    if (Saisies::isTransfert() && $current_user->getSolde() > - $_POST['montant']){
+                    if (Saisies::isTransfert() && $current_user->getSolde() > - $_POST['montant'] && !empty($current_user->iban)){
                         Operation::transfer($_SESSION['id'],-$_POST['montant'], $_POST['libelle']);
                         $flash="Transfert réussi";
                     }
