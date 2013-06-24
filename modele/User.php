@@ -170,8 +170,8 @@ class User {
         global $bdd;
         $password = sha1($password.self::KEY);
        
-        $req=$bdd->prepare("SELECT id FROM users WHERE email= ? AND password= ? AND locked=0");
-        $req->execute( array($email, $password));
+        $req=$bdd->prepare("SELECT id FROM users WHERE email=? AND password=? AND locked=0");
+        $req->execute(array($email, $password));
         $donnees = $req->fetch();
 
         return $donnees['id'];
@@ -207,7 +207,7 @@ class User {
         
         global $bdd;
         
-        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW())");
+        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW(),0)");
         return ($req->execute(array($mail,sha1($password.self::KEY),$nom,$prenom)));
     }
     
@@ -218,7 +218,7 @@ class User {
         if($crypted!=true)
             $password=sha1($password.self::KEY);
         
-        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW())");
+        $req=$bdd->prepare("INSERT INTO users VALUES('',?,?,?,?,'', NOW(), NOW(),0)");
         return ($req->execute(array($mail,$password,$nom,$prenom)));
     }
     

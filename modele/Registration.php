@@ -18,7 +18,7 @@ class Registration{
         $code=sha1($code);
 
         $req=$bdd->prepare("INSERT INTO registration VALUES('',?,?,?,?,?, NOW())");
-        $req->execute(array($mail, sha1($password), $nom, $prenom, $code));
+        $req->execute(array($mail, sha1($password.'jeu7!oQnep9&l'), $nom, $prenom, $code));
         
         return $code;
     }
