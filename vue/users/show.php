@@ -16,10 +16,13 @@ if (isset($_SESSION['id'])) { ?>
     <p class="email"><?php echo $user_showed->email ?></p>
     <p> Dernière connexion : <?php echo $user_showed->last_connect ?></p>
     
-    <button type='button' class='button_user_1'><a href="index.php?page=operations&action=new&type=deal&id=<?php echo $user_showed->id ?>"> Virement</a></button>
+    <button type='button' class='button_user_1' onclick="location.replace('index.php?page=operations&action=new&type=deal&id=<?php echo $user_showed->id?>')">
+         Virement
+    </button>
+    
     <br/>
     <?php if ($user_showed->estAmi) { ?>
-    <button type='button' class='button_user_2'><a class="confirmation" value="<?php echo $user_showed->id ?>">Supprimer cet ami</a></button>
+    <button type='button' class='button_user_2'><span class="confirmation" value="<?php echo $user_showed->id ?>">Supprimer cet ami</span></button>
     <?php } ?>
     
     <div class="dernieres_operations">

@@ -7,7 +7,6 @@
 
 /**
  * Description of Member
- * à fair évoluer éventuellement pour représenter un membre de manière plus générale (qui n'existe pas forcément dans la bdd
  *
  * @author Arthur
  */
