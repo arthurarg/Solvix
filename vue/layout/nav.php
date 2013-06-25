@@ -17,7 +17,10 @@ if(isset($vue)){
     </div>
     
     <div class='module'>
-    <form action="index.php?page=operations&action=create&type=deal" method="post">
+        
+    <form action="index.php?page=operations&action=create&type=deal" method="post" 
+            onsubmit='return(confirm_virement())'>
+        
         <p class='formulaire_virement'>
             Virement express à
             <select id='receveur' name='receveur'>
@@ -28,7 +31,8 @@ if(isset($vue)){
             <span class='montant'><input type='number' step="any" min="0" placeholder='0' size='3' id='montant' name="montant"> </input> € </span><br/>
             <input placeholder=' Libelle...' size='15' type='text' maxlength='50' id='libelle' name="libelle"> </input>
            <input type="submit" id='valider' value="Donner">
-           </p></form>
+        </p></form>
+        
     <p><a href='index.php?page=operations&action=new&type=query'> Demander un virement </a><br/>
         <a href='index.php?page=operations&action=new&type=load'> Recharger mon compte </a><br/>
     <a href='index.php?page=operations&action=new&type=back'> Retirer de l'argent </a></p>

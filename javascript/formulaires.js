@@ -120,4 +120,16 @@ $(document).ready(function() {
         else
             return true;
     }
+    
+   // -- Confirmation  -- //
+       function confirm_virement() {
+           if (confirm("Montant versé : "+$(".formulaire_virement #montant").val() + "€ \n Etes-vous sur ?"))
+               return true;
+           else
+               return false;
+       }
+ 
+    
+    
+
 
