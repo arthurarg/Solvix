@@ -25,17 +25,25 @@ header{
 }
 
 footer{
-    margin-top:15px;
-    bottom:0;
-    left:0;
+    margin-top:0px;
     color:rgb(47,47, 47);
     text-align: right;
+    background-color: rgba(255, 255, 255, 0.4);
+    height:40px;
+    position: relative;
+}
+footer p {
+    position: relative;
+    top: 12px;
 }
 
+
 body {
-    background-image:url('../images/bg.png');
-    background-color:rgb(192,222,237);
+    background-image:url('../images/fond.png');
+    /* background-color:rgb(192,222,237);*/
+    background-color:rgb(196,218,224);
     background-repeat:no-repeat;
+    /*background-attachment:fixed;*/
     color:rgb(47,47, 47);
 }
 
@@ -47,7 +55,7 @@ body {
     top: 6%;
     width: 80%;
     min-width: 800px;
-    min-height: 400px;
+    min-height: 600px;
     z-index: 1;
 }
 
@@ -85,11 +93,14 @@ article{
     vertical-align: middle;
     padding: 0px;
     margin: 0px 0px 0px 10px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family:monospace;
 }
 #barreheader{
     position:absolute;
     top:0;
-    min-width: 800px;
+    min-width: 75%;
 }
 
 
@@ -100,12 +111,21 @@ article{
     border-radius:10px;
     height:20px;
     width:150px;
+    margin-top: 1px;
 }
 #button{
     background-image: url("../images/magnifyingglass.png");
     border:0;
-    background-color: 0;
 }
+#barredroite{
+    position:absolute;
+    right:10%;
+}
+#barregauche{
+    position:absolute;
+    left:3%;
+}
+
 header a {
     color : rgb(204,204,204);
     text-decoration:none;
@@ -120,7 +140,7 @@ header ul {
     display : inline-block;
     width: 350px;
     margin-top:0;
-    padding:6px;
+    padding-top:7px;
 }
 #barredroite img{
     width:30px;
