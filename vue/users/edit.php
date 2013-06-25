@@ -6,7 +6,7 @@
         echo("<button class='modifier_password' type='button'> Modifier mot de passe </button> <br/><br/>");
         echo("Email : " .$current_user->email. "<br/>");
         if (!empty($current_user->iban))
-            echo('IBAN :' . $current_user->iban);
+            echo('IBAN : ' . strtoupper ($current_user->iban));
         else
             echo('Aucun iban rattaché à ce compte ');
         echo("<br/><button class='modifier_iban' type='button'>Modifier</button> <br/><br/>");
@@ -17,7 +17,7 @@
 
 <form class='formulaire_edition' action="index.php?page=users&action=update" method="post" onsubmit='return valider_edit()'>
     <fieldset class='intitule'><legend> Mise à jour</legend>
-        <span class="password"> <input type="password" placeholder='Mot de passe...' id="password" name="password" value="" /></span>
+        <span class="password"> <input type="password" placeholder='Mot de passe...' id="password" name="password"/></span>
         <span class="new_password"><input type="password" placeholder='Nouveau mot de passe...' id="new_password" name="new_password" /></span>
         <span class="new_confirmation"> <input type="password" placeholder='Confirmation nouveau...' id="new_confirmation" name="new_confirmation" /></span>
         <span class="email"><input type="email" placeholder='E-mail...'id="email" name="email" /></span>

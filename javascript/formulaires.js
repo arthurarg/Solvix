@@ -47,15 +47,16 @@ $(document).ready(function() {
         var regex_iban = /^[0-9A-Za-z-]{1,34}$/;
 
         var bol= true;
-        if (!regex_mail.test($(".formulaire_edition #email").val())) {
+        if (($(".formulaire_edition #email").val()).length != 0 && !regex_mail.test($(".formulaire_edition #email").val())) {
             $(".formulaire_edition #email").css('border','1px solid red');
             bol = false;
         }
-        if (!regex_iban.test($(".formulaire_edition #iban").val())) {
+        if (($(".formulaire_edition #iban").val()).length != 0 && !regex_iban.test($(".formulaire_edition #iban").val())) {
             $(".formulaire_edition #iban").css('border','1px solid red');
             bol = false;
         }
-        if ($(".formulaire_edition #new_password").val() !== $(".formulaire_edition #new_confirmation").val()) {
+        if (($(".formulaire_edition #new_password").val()).length != 0 && ($(".formulaire_edition #new_confirmation").val()).length != 0 &&
+                $(".formulaire_edition #new_password").val() !== $(".formulaire_edition #new_confirmation").val()) {
             $(".formulaire_edition #new_password").css('border','1px solid red');
             $(".formulaire_edition #new_confirmation").css('border','1px solid red');
             bol = false;

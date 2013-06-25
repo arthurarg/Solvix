@@ -73,7 +73,7 @@
           if (empty($_POST['password']))
               return false;
           if (!empty($_POST['new_password'])) {
-              if (!empty($_POST['new_confirmation']) || !($_POST['new_confirmation']===$_POST['new_password']))
+              if (empty($_POST['new_confirmation']) || $_POST['new_confirmation']!==$_POST['new_password'])
                   return false;
           }
           if (!empty($_POST['iban']) && !Saisies::isIBAN($_POST['iban']))

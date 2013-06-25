@@ -44,17 +44,18 @@ switch ($_GET['action']) {
     
     case "update":
         if (Saisies::isValidUpdate() && User::verifierMotdePasse($current_user->email, $_POST['password'])) {
-            if (isset($_POST['new_password'])) 
+            if (!empty($_POST['new_password'])) 
                 User::update_password($_POST['new_password']);
-            else if (isset($_POST['iban']))
+            else if (!empty($_POST['iban']))
                 User::update_iban($_POST['iban']);
-            $flash = "Mise à jour reussie";
+
+            header('Location: index.php?page=users&action=edit');
         }
-        else
+        else {
             $flash = "Mise à jour : échec ";
-        
-        $vue = "index.php";
-        require_once 'vue/index.php';
+            $vue='vue/users/edit.php';
+            require_once 'vue/index.php';
+        }
         break;       
     
 
